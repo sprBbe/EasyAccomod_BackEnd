@@ -16,7 +16,9 @@ class CreateImgsTable extends Migration
         Schema::create('imgs', function (Blueprint $table) {
             $table->id();
             $table->string('link');
-            $table->tinyInteger('main_img');
+            $table->tinyInteger('is_main_img');
+            $table->foreignId('id_post');
+            $table->foreign('id_post')->references('id')->on('posts');
             $table->timestamps();
         });
     }

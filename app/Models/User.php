@@ -40,4 +40,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all comments of users.
+     */
+    public function comments(){
+        return $this->hasMany('App\Models\Comment','id_from');
+    }
+
+    /**
+     * Get role of users.
+     */
+    public function role(){
+        return $this->belongsTo('App\Models\Role','id_role');
+    }
+
+    /**
+     * Get ward of users.
+     */
+    public function ward(){
+        return $this->belongsTo('App\Models\Ward','id_ward');
+    }
 }
