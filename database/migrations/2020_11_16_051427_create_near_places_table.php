@@ -16,6 +16,8 @@ class CreateNearPlacesTable extends Migration
         Schema::create('near_places', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('id_post');
+            $table->foreign('id_post')->references('id')->on('posts');
             $table->timestamps();
         });
     }

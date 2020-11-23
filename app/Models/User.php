@@ -49,6 +49,13 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all notifications of users.
+     */
+    public function notifications(){
+        return $this->hasMany('App\Models\Notification','id_to');
+    }
+
+    /**
      * Get role of users.
      */
     public function role(){
@@ -60,5 +67,13 @@ class User extends Authenticatable
      */
     public function ward(){
         return $this->belongsTo('App\Models\Ward','id_ward');
+    }
+
+    /**
+     * Get favourites of users.
+     */
+    public function favourites()
+    {
+        return $this->belongsToMany('App\Models\Post', 'fav_post', 'id_from', 'id_post');
     }
 }

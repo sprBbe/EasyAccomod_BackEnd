@@ -16,13 +16,11 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('id_near_places');
-            $table->foreign('id_near_places')->references('id')->on('near_places');  
             $table->tinyInteger('with_owner')->comment('1: live with owner; 0: no live owner');
-            $table->foreignId('id_room_types');
-            $table->foreign('id_room_types')->references('id')->on('room_types');
+            $table->foreignId('id_room_type');
+            $table->foreign('id_room_type')->references('id')->on('room_types');
             $table->bigInteger('square')->comment('m^2');
-            $table->bigInteger('price');   
+            $table->bigInteger('price');
             $table->string('coordinates')->comment('Toa Do');;
             $table->foreignId('id_owner');
             $table->foreign('id_owner')->references('id')->on('users');
