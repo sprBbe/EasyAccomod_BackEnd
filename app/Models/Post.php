@@ -32,7 +32,7 @@ class Post extends Model
      */
     public function nearPlace()
     {
-        return $this->belongsTo('App\Models\NearPlace', 'id_post');
+        return $this->hasMany('App\Models\NearPlace', 'id_post');
     }
 
     /**

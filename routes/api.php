@@ -25,3 +25,8 @@ Route::group(['prefix' => 'auth', 'namespace' => 'App\Http\Controllers'], functi
         Route::get('user', 'AuthController@user');
     });
 });
+Route::group(['namespace'=>'App\Http\Controllers'],function(){
+    Route::get('home', 'PagesController@home')->name('home');
+    Route::get('new_post', 'PagesController@get_new_post')->name('get_new_post');
+    Route::post('new_post', 'PagesController@post_new_post')->name('post_new_post');
+});
