@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'SpringBbe',
                 'email' => 'admin@gmail.com',
-                'password' => '123456',
+                'password' => bcrypt('123456'),
                 'detail_address' => 'Số 53 Xuân Thủy',
                 'national_id_number' => '1234567890',
                 'phone' => '0123456789',
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'SpringBbe',
                 'email' => 'owner@gmail.com',
-                'password' => '123456',
+                'password' => bcrypt('123456'),
                 'detail_address' => 'Số 55 Xuân Thủy',
                 'national_id_number' => '1234567890',
                 'phone' => '0123456789',
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'SpringBbe',
                 'email' => 'classic_user@gmail.com',
-                'password' => '123456',
+                'password' => bcrypt('123456'),
                 'detail_address' => 'Số 53 Xuân Thủy',
                 'national_id_number' => '1234567890',
                 'phone' => '0123456789',

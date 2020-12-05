@@ -15,4 +15,11 @@ class District extends Model
     public function province(){
         return $this->belongsTo('App\Models\Province','id_province');
     }
+
+    /**
+     * Get wards of district.
+     */
+    public function ward(){
+        return $this->hasMany('App\Models\Ward','id_district');
+    }
 }

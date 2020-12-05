@@ -32,7 +32,7 @@ class PostSeeder extends Seeder
                 'status' => 1,
             ],
         ];
-        for ($i = 0; $i <= 100; $i++) {
+        for ($i = 0; $i <= 10; $i++) {
             foreach ($posts as $post) {
                 Post::create($post);
             }

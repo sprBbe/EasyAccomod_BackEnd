@@ -27,6 +27,10 @@ Route::group(['prefix' => 'auth', 'namespace' => 'App\Http\Controllers'], functi
 });
 Route::group(['namespace'=>'App\Http\Controllers'],function(){
     Route::get('home', 'PagesController@home')->name('home');
-    Route::get('new_post', 'PagesController@get_new_post')->name('get_new_post');
-    Route::post('new_post', 'PagesController@post_new_post')->name('post_new_post');
+    Route::get('get_all_provinces', 'PagesController@getAllProvinces')->name('get_all_provinces');
+    Route::get('get_district_by_id_province/{id_province}', 'PagesController@getDistrictByIdProvince');
+    Route::get('get_ward_by_id_district/{id_district}', 'PagesController@getWardByIdDistrict');
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::post('new_post', 'PagesController@postNewPost')->name('new_post');
+    });
 });
