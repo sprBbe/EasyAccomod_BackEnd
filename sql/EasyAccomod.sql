@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 04, 2020 at 10:13 AM
+-- Generation Time: Dec 08, 2020 at 05:47 PM
 -- Server version: 8.0.22-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -31,7 +31,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `amenities` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -990,8 +989,8 @@ CREATE TABLE `oauth_clients` (
 --
 
 INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'EasyAccomod Personal Access Client', 'UzzRPmSv6zqzifRIAf8Sd0mwgGHsOamDpHefuBYl', NULL, 'http://localhost', 1, 0, 0, '2020-12-04 03:11:54', '2020-12-04 03:11:54'),
-(2, NULL, 'EasyAccomod Password Grant Client', '0fvkpbBVYihwDTWGuWRnz8Gxo73sSk1LUIF1TQuX', 'users', 'http://localhost', 0, 1, 0, '2020-12-04 03:11:54', '2020-12-04 03:11:54');
+(1, NULL, 'EasyAccomod Personal Access Client', 'R2GCyR9X026FPzUDQqSMbvBD7nA4R8EH0Q0GWI2T', NULL, 'http://localhost', 1, 0, 0, '2020-12-08 10:46:31', '2020-12-08 10:46:31'),
+(2, NULL, 'EasyAccomod Password Grant Client', '7XNArXIQK9sMRRar0VCOZn3T2gRBmnJrHFMlMHIo', 'users', 'http://localhost', 0, 1, 0, '2020-12-08 10:46:31', '2020-12-08 10:46:31');
 
 -- --------------------------------------------------------
 
@@ -1011,7 +1010,7 @@ CREATE TABLE `oauth_personal_access_clients` (
 --
 
 INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2020-12-04 03:11:54', '2020-12-04 03:11:54');
+(1, 1, '2020-12-08 10:46:31', '2020-12-08 10:46:31');
 
 -- --------------------------------------------------------
 
@@ -1051,8 +1050,15 @@ CREATE TABLE `posts` (
   `detail_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_ward` bigint UNSIGNED NOT NULL,
   `with_owner` tinyint NOT NULL COMMENT '1: live with owner; 0: no live owner',
+  `restroom` tinyint NOT NULL COMMENT '1: riêng; 0: chung',
+  `kitchen` tinyint NOT NULL COMMENT '1: khu bếp riêng; 0: không nấu; 2: khu bếp chung',
+  `water_heater` tinyint NOT NULL COMMENT '1: có nóng lạnh; 0: không nóng lạnh',
+  `air_conditioner` tinyint NOT NULL COMMENT '1: có điều hòa; 0: không điều hòa',
+  `balcony` tinyint NOT NULL COMMENT '1: có ban công; 0: không ban công',
   `id_room_type` bigint UNSIGNED NOT NULL,
   `square` bigint NOT NULL COMMENT 'm^2',
+  `electricity_price` bigint NOT NULL COMMENT 'giá điện',
+  `water_price` bigint NOT NULL COMMENT 'giá nước',
   `price` bigint NOT NULL COMMENT 'each month',
   `coordinates` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Toa Do',
   `id_owner` bigint UNSIGNED NOT NULL,

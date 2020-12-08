@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Amenity;
 use App\Models\District;
 use App\Models\Img;
 use App\Models\Province;
@@ -52,8 +53,12 @@ class PagesController extends Controller
 
     function postNewPost(Request $request)
     {
-        if ($request->user()->role_id != 2 || $request->user()->role_id != 3) {
+        if ($request->user()->id_role == 1) {
             return response()->json("Bạn phải là admin hoặc chủ nhà mới được gửi bài đăng mới", 403);
+        }
+
+        if (!in_array($request->user()->id_role, array(1, 2, 3))) {
+            return response()->json("Quyền người dùng không tồn tại!", 403);
         }
         $request->validate([
             'title' => 'required|max:250',
@@ -61,9 +66,17 @@ class PagesController extends Controller
             'detail_address' => 'max:250',
             'id_ward' => 'required',
             'with_owner' => 'required',
+            'restroom' => 'required|in:' . implode(',', array(0, 1)),
+            'kitchen' => 'required|in:' . implode(',', array(0, 1, 2)),
+            'water_heater' => 'required|in:' . implode(',', array(0, 1)),
+            'air_conditioner' => 'required|in:' . implode(',', array(0, 1)),
+            'balcony' => 'required|in:' . implode(',', array(0, 1)),
+            'additional_amenity' => 'array|max:30',
             'id_room_type' => 'required',
             'square' => 'required',
             'price' => 'required',
+            'electricity_price' => 'required|numeric',
+            'water_price' => 'required|numeric',
             'time_expire' => 'before_or_equal:+2 months',
             'imgs' => 'required|min:3|max:10', // validate an array contains minimum 3 elements and maximum 10
             'imgs.*' => 'required|mimes:jpeg,jpg,png,gif,raw|max:100000', // and each element must be a jpeg or jpg or png or gif file
@@ -99,9 +112,16 @@ class PagesController extends Controller
         $post->detail_address = $request->detail_address;
         $post->id_ward = $request->id_ward;
         $post->with_owner = $request->with_owner;
+        $post->restroom = $request->restroom;
+        $post->kitchen = $request->kitchen;
+        $post->water_heater = $request->water_heater;
+        $post->air_conditioner = $request->air_conditioner;
+        $post->balcony = $request->balcony;
         $post->id_room_type = $request->id_room_type;
         $post->square = $request->square;
         $post->price = $request->price;
+        $post->electricity_price = $request->electricity_price;
+        $post->water_price = $request->water_price;
         $post->coordinates = $request->coordinates;
         $post->id_owner = $request->user()->id;
         $post->time_expire = isset($request->time_expire) ? $request->time_expire : date('Y-m-d H:m:s', strtotime("+2 weeks"));
@@ -120,12 +140,25 @@ class PagesController extends Controller
             }
             $post->images()->save($img);
         }
+        $additional_amenities = $request->additional_amenity;
+        foreach ($additional_amenities as $additional_amenity) {
+            $amenity = Amenity::where('name','=',$additional_amenity)->take(1)->get();
+            if($amenity->count()!=0){
+                $post->amenities()->attach($amenity[0]->id);
+            } else {
+                $amenity = new Amenity();
+                $amenity->name = $additional_amenity;
+                $amenity->save();
+                $post->amenities()->attach($amenity->id);
+            }
+
+        }
         return response()->json("Successfully created post", 201);
     }
 
     function postEditProfile(Request $request)
     {
-        if($request->phone==''){
+        if ($request->phone == '') {
             $request->validate([
                 'name' => 'max:250',
                 'detail_address' => 'max:250',
@@ -158,7 +191,7 @@ class PagesController extends Controller
         $user->phone = $request->phone;
         $user->id_ward = $request->id_ward;
         $user->save();
-        return response()->json("Sửa thông tin thành công!",200);
+        return response()->json("Sửa thông tin thành công!", 200);
     }
 
     function postChangePassword(Request $request)
@@ -166,11 +199,11 @@ class PagesController extends Controller
         $user = $request->user();
         if (!(Hash::check($request->get('old_password'), $user->password))) {
             // The password doesn't matche
-            return response()->json("Mật khẩu hiện tại của bạn nhập không đúng",400);
+            return response()->json("Mật khẩu hiện tại của bạn nhập không đúng", 400);
         }
         $request->validate([
-            'old_password'     => 'required',
-            'new_password'     => 'required|min:6|max:32|different:old_password',
+            'old_password' => 'required',
+            'new_password' => 'required|min:6|max:32|different:old_password',
             'password_confirmation' => 'required|same:new_password',
         ], [
             'new_password.min' => 'Mật khẩu chỉ nằm trong khoảng 6 đến 32 ký tự',
