@@ -9,4 +9,11 @@ class Img extends Model
 {
     use HasFactory;
     protected $table = "imgs";
+    /**
+     * Get post of an image
+     */
+    public function post()
+    {
+        return $this->belongsTo('App\Models\Post', 'id_post');
+    }
 }

@@ -32,5 +32,7 @@ Route::group(['namespace'=>'App\Http\Controllers'],function(){
     Route::get('get_ward_by_id_district/{id_district}', 'PagesController@getWardByIdDistrict');
     Route::group(['middleware' => 'auth:api'], function() {
         Route::post('new_post', 'PagesController@postNewPost')->name('new_post');
+        Route::post('edit_profile','PagesController@postEditProfile')->name('post_edit_profile');
+        Route::post('change_password','PagesController@postChangePassword')->name('post_change_password');
     });
 });

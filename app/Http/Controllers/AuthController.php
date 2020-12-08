@@ -21,7 +21,7 @@ class AuthController extends Controller
     public function signup(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:250',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed'
         ]);
@@ -50,7 +50,6 @@ class AuthController extends Controller
      *
      * @param  [string] email
      * @param  [string] password
-     * @param  [boolean] remember_me
      * @return [string] access_token
      * @return [string] token_type
      * @return [string] expires_at
@@ -60,7 +59,6 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
-            'remember_me' => 'boolean'
         ]);
         $credentials = request(['email', 'password']);
         if(!Auth::attempt($credentials))
@@ -70,8 +68,6 @@ class AuthController extends Controller
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
-        if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
         return response()->json([
             'user' => $user,
