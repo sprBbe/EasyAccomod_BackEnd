@@ -20,19 +20,20 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth', 'namespace' => 'App\Http\Controllers'], function () {
     Route::post('login', 'AuthController@login')->name("login");
     Route::post('signup', 'AuthController@signup');
-    Route::group(['middleware' => 'auth:api'], function() {
+    Route::group(['middleware' => 'auth:api'], function () {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
 });
-Route::group(['namespace'=>'App\Http\Controllers'],function(){
-    Route::get('home', 'PagesController@home')->name('home');
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::get('home', 'PagesController@getHome')->name('home');
+    Route::get('get_img/{url}', 'PagesController@getImg')->name('get_img');
     Route::get('get_all_provinces', 'PagesController@getAllProvinces')->name('get_all_provinces');
     Route::get('get_district_by_id_province/{id_province}', 'PagesController@getDistrictByIdProvince');
     Route::get('get_ward_by_id_district/{id_district}', 'PagesController@getWardByIdDistrict');
-    Route::group(['middleware' => 'auth:api'], function() {
+    Route::group(['middleware' => 'auth:api'], function () {
         Route::post('new_post', 'PagesController@postNewPost')->name('new_post');
-        Route::post('edit_profile','PagesController@postEditProfile')->name('post_edit_profile');
-        Route::post('change_password','PagesController@postChangePassword')->name('post_change_password');
+        Route::post('edit_profile', 'PagesController@postEditProfile')->name('post_edit_profile');
+        Route::post('change_password', 'PagesController@postChangePassword')->name('post_change_password');
     });
 });

@@ -14,15 +14,28 @@ use Illuminate\Support\Str;
 
 class PagesController extends Controller
 {
-    function home()
+    function getHome()
     {
-        $nine_post_on_top = Post::where('time_expire', '>', Carbon::now())->orderby('views', 'desc')->take(9)->get();
-        $six_post_lastest = Post::orderby('created_at', 'desc')->take(9)->get();
+        $nine_posts_on_top = Post::where('time_expire', '>', Carbon::now())->orderby('views', 'desc')->take(9)->get();
+        $six_posts_lastest = Post::orderby('created_at', 'desc')->take(6)->get();
+        $nine_posts_on_top_img = array();
+        foreach ($nine_posts_on_top as $post) {
+            $nine_posts_on_top_img[] = $post->images;
+        }
+        $six_posts_lastest_img = array();
+        foreach ($six_posts_lastest as $post) {
+            $six_posts_lastest_img[] = $post->images;
+        }
         return response()->json([
-                'nine_post_on_top' => $nine_post_on_top,
-                'six_post_lastest' => $six_post_lastest,
+                'nine_post_on_top' => $nine_posts_on_top,
+                'six_post_lastest' => $six_posts_lastest,
             ]
         );
+    }
+
+    function getImg($url)
+    {
+        return response()->file("uploads/post_images/".$url);
     }
 
     function getAllProvinces()
@@ -141,17 +154,19 @@ class PagesController extends Controller
             $post->images()->save($img);
         }
         $additional_amenities = $request->additional_amenity;
-        foreach ($additional_amenities as $additional_amenity) {
-            $amenity = Amenity::where('name','=',$additional_amenity)->take(1)->get();
-            if($amenity->count()!=0){
-                $post->amenities()->attach($amenity[0]->id);
-            } else {
-                $amenity = new Amenity();
-                $amenity->name = $additional_amenity;
-                $amenity->save();
-                $post->amenities()->attach($amenity->id);
-            }
+        if (isset($additional_amenities)) {
+            foreach ($additional_amenities as $additional_amenity) {
+                $amenity = Amenity::where('name', '=', $additional_amenity)->take(1)->get();
+                if ($amenity->count() != 0) {
+                    $post->amenities()->attach($amenity[0]->id);
+                } else {
+                    $amenity = new Amenity();
+                    $amenity->name = $additional_amenity;
+                    $amenity->save();
+                    $post->amenities()->attach($amenity->id);
+                }
 
+            }
         }
         return response()->json("Successfully created post", 201);
     }
