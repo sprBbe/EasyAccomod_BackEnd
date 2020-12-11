@@ -16,8 +16,14 @@ class PagesController extends Controller
 {
     function getHome()
     {
-        $nine_posts_on_top = Post::where('time_expire', '>', Carbon::now())->orderby('views', 'desc')->take(9)->get();
-        $six_posts_lastest = Post::orderby('created_at', 'desc')->take(6)->get();
+        $nine_posts_on_top = Post::where([
+            ['time_expire', '>', Carbon::now()],
+            ['status', 1]
+        ])->orderby('views', 'desc')->take(9)->get();
+        $six_posts_lastest = Post::where([
+            ['time_expire', '>', Carbon::now()],
+            ['status', 1]
+        ])->orderby('created_at', 'desc')->take(6)->get();
         $nine_posts_on_top_img = array();
         foreach ($nine_posts_on_top as $post) {
             $nine_posts_on_top_img[] = $post->images;
@@ -27,15 +33,73 @@ class PagesController extends Controller
             $six_posts_lastest_img[] = $post->images;
         }
         return response()->json([
-                'nine_post_on_top' => $nine_posts_on_top,
-                'six_post_lastest' => $six_posts_lastest,
-            ]
+            'nine_post_on_top' => $nine_posts_on_top,
+            'six_post_lastest' => $six_posts_lastest,
+        ], 200
         );
+    }
+
+    function getFilter(Request $request)
+    {
+        $posts = Post::query();
+        if ($request->has('id_post')) {
+            $posts->where('id', $request->id_post);
+        }
+        if ($request->has('id_ward')) {
+            $posts->where('id_ward', $request->id_ward);
+        }
+        if ($request->has('with_owner')) {
+            $posts->where('with_owner', $request->with_owner);
+        }
+        if ($request->has('restroom')) {
+            $posts->where('restroom', $request->restroom);
+        }
+        if ($request->has('kitchen')) {
+            $posts->where('kitchen', $request->kitchen);
+        }
+        if ($request->has('water_heater')) {
+            $posts->where('water_heater', $request->water_heater);
+        }
+        if ($request->has('air_conditioner')) {
+            $posts->where('air_conditioner', $request->air_conditioner);
+        }
+        if ($request->has('balcony')) {
+            $posts->where('balcony', $request->balcony);
+        }
+        if ($request->has('id_room_type')) {
+            $posts->where('id_room_type', $request->id_room_type);
+        }
+        if ($request->has('square_min')) {
+            $posts->where('square', '>=', $request->square_min);
+        }
+        if ($request->has('square_max')) {
+            $posts->where('square', '<=', $request->square_max);
+        }
+        if ($request->has('price_min')) {
+            $posts->where('square', '>=', $request->price_min);
+        }
+        if ($request->has('price_max')) {
+            $posts->where('square', '<=', $request->price_max);
+        }
+        if ($request->has('price_min')) {
+            $posts->where('square', '>=', $request->price_min);
+        }
+        if ($request->has('price_min')) {
+            $posts->where('square', '>=', $request->price_min);
+        }
+        $posts->where('status', 1);
+        $posts->where('time_expire', '>', Carbon::now());
+        $posts = $posts->get();
+        $posts_img = array();
+        foreach ($posts as $post) {
+            $posts_img[] = $post->images;
+        }
+        return response()->json(['Search result' => $posts], 200);
     }
 
     function getImg($url)
     {
-        return response()->file("uploads/post_images/".$url);
+        return response()->file("uploads/post_images/" . $url);
     }
 
     function getAllProvinces()

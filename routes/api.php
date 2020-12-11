@@ -31,6 +31,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('get_all_provinces', 'PagesController@getAllProvinces')->name('get_all_provinces');
     Route::get('get_district_by_id_province/{id_province}', 'PagesController@getDistrictByIdProvince');
     Route::get('get_ward_by_id_district/{id_district}', 'PagesController@getWardByIdDistrict');
+    Route::get('filter','PagesController@getFilter');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('new_post', 'PagesController@postNewPost')->name('new_post');
         Route::post('edit_profile', 'PagesController@postEditProfile')->name('post_edit_profile');

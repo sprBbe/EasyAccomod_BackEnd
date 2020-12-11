@@ -10,7 +10,7 @@ use App\Models\User;
 class AuthController extends Controller
 {
     /**
-     * Create user
+     * Tạo mới người dùng và một token
      *
      * @param  [string] name
      * @param  [string] email
@@ -46,7 +46,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Login user and create token
+     * Đăng nhập và tạo mới token
      *
      * @param  [string] email
      * @param  [string] password
@@ -63,10 +63,10 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
         if(!Auth::attempt($credentials))
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Đăng nhập không thành công!'
             ], 401);
         $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
+        $tokenResult = $user->createToken('User Token');
         $token = $tokenResult->token;
         $token->save();
         return response()->json([
@@ -80,7 +80,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout user (Revoke the token)
+     * Đăng xuất người dùng
      *
      * @return [string] message
      */
@@ -93,7 +93,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the authenticated User
+     * Lấy ra người dùng đã đăng nhập
      *
      * @return [json] user object
      */
