@@ -133,7 +133,6 @@ class PagesController extends Controller
         if ($request->user()->id_role == 1) {
             return response()->json("Bạn phải là admin hoặc chủ nhà mới được gửi bài đăng mới", 403);
         }
-
         if (!in_array($request->user()->id_role, array(1, 2, 3))) {
             return response()->json("Quyền người dùng không tồn tại!", 403);
         }
