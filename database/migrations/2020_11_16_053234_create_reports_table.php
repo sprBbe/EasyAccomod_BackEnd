@@ -17,6 +17,8 @@ class CreateReportsTable extends Migration
             $table->id();
             $table->foreignId('id_post');
             $table->foreign('id_post')->references('id')->on('posts');
+            $table->foreignId('id_from');
+            $table->foreign('id_from')->references('id')->on('users');
             $table->string('request');
             $table->tinyInteger('status')->comment('1: checked; 0: unchecked');
             $table->timestamps();

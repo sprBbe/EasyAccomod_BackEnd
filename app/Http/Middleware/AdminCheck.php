@@ -19,7 +19,7 @@ class AdminCheck
         //$x = $request->user();
         if($request->user('api')){
             $user = $request->user('api');
-            if($user->id_role==3){
+            if($user->id_role==2){
                 return $next($request);
             }
             else{

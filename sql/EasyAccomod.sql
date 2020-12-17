@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 08, 2020 at 05:47 PM
+-- Generation Time: Dec 17, 2020 at 11:13 PM
 -- Server version: 8.0.22-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -989,8 +989,8 @@ CREATE TABLE `oauth_clients` (
 --
 
 INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'EasyAccomod Personal Access Client', 'R2GCyR9X026FPzUDQqSMbvBD7nA4R8EH0Q0GWI2T', NULL, 'http://localhost', 1, 0, 0, '2020-12-08 10:46:31', '2020-12-08 10:46:31'),
-(2, NULL, 'EasyAccomod Password Grant Client', '7XNArXIQK9sMRRar0VCOZn3T2gRBmnJrHFMlMHIo', 'users', 'http://localhost', 0, 1, 0, '2020-12-08 10:46:31', '2020-12-08 10:46:31');
+(1, NULL, 'EasyAccomod Personal Access Client', 'FZ6qbcgWJwA602gkEw6sxdU3kSttT0ucSRng05w4', NULL, 'http://localhost', 1, 0, 0, '2020-12-17 16:11:26', '2020-12-17 16:11:26'),
+(2, NULL, 'EasyAccomod Password Grant Client', 'JZZS6ejoLZhG4ru8Ftje0dATPj5EreHjw7012fOV', 'users', 'http://localhost', 0, 1, 0, '2020-12-17 16:11:26', '2020-12-17 16:11:26');
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1010,7 @@ CREATE TABLE `oauth_personal_access_clients` (
 --
 
 INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2020-12-08 10:46:31', '2020-12-08 10:46:31');
+(1, 1, '2020-12-17 16:11:26', '2020-12-17 16:11:26');
 
 -- --------------------------------------------------------
 
@@ -1161,6 +1161,7 @@ INSERT INTO `provinces` (`id`, `name`, `prefix`, `created_at`, `updated_at`) VAL
 CREATE TABLE `reports` (
   `id` bigint UNSIGNED NOT NULL,
   `id_post` bigint UNSIGNED NOT NULL,
+  `id_from` bigint UNSIGNED NOT NULL,
   `request` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint NOT NULL COMMENT '1: checked; 0: unchecked',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1180,6 +1181,15 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Classic User', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
+(2, 'Admin', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
+(3, 'Owner', '2020-12-17 16:12:52', '2020-12-17 16:12:52');
+
 -- --------------------------------------------------------
 
 --
@@ -1192,6 +1202,16 @@ CREATE TABLE `room_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `room_types`
+--
+
+INSERT INTO `room_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Phòng trọ', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
+(2, 'Chung cư mini', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
+(3, 'Nhà nguyên căn', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
+(4, 'Chung cư nguyên căn', '2020-12-17 16:12:52', '2020-12-17 16:12:52');
 
 -- --------------------------------------------------------
 
@@ -1214,6 +1234,15 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `detail_address`, `national_id_number`, `phone`, `id_role`, `id_ward`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'SpringBbe', 'classic_user@gmail.com', NULL, '$2y$10$zik/.9/nIbf8xZISTJFEd.D5BCqO39Mpdzw5UKIT2BOTSa7phfpQS', 'Số 53 Xuân Thủy', '1234567890', '0123456789', 1, 1, NULL, '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
+(2, 'SpringBbe', 'admin@gmail.com', NULL, '$2y$10$uMV2MWmak1edGBOmF8p9SeQhmMrQH..nibd18HDBvAYum/lQUUZnK', 'Số 53 Xuân Thủy', '1234567890', '0123456789', 2, 1, NULL, '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
+(3, 'SpringBbe', 'owner@gmail.com', NULL, '$2y$10$6zEzdzc9roqV9C3tsaj3AekpJGoZvluoDCj5mzZ6GmWeZr5OVqgri', 'Số 55 Xuân Thủy', '1234567890', '0123456789', 3, 1, NULL, '2020-12-17 16:12:52', '2020-12-17 16:12:52');
 
 -- --------------------------------------------------------
 
@@ -12551,7 +12580,8 @@ ALTER TABLE `provinces`
 --
 ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `reports_id_post_foreign` (`id_post`);
+  ADD KEY `reports_id_post_foreign` (`id_post`),
+  ADD KEY `reports_id_from_foreign` (`id_from`);
 
 --
 -- Indexes for table `roles`
@@ -12685,19 +12715,19 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `wards`
@@ -12773,6 +12803,7 @@ ALTER TABLE `posts`
 -- Constraints for table `reports`
 --
 ALTER TABLE `reports`
+  ADD CONSTRAINT `reports_id_from_foreign` FOREIGN KEY (`id_from`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `reports_id_post_foreign` FOREIGN KEY (`id_post`) REFERENCES `posts` (`id`);
 
 --

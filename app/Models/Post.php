@@ -44,6 +44,14 @@ class Post extends Model
     }
 
     /**
+     * Get fav_user of room in post
+     */
+    public function favUsers()
+    {
+        return $this->belongsToMany('App\Models\User', 'fav_post', 'id_post', 'id_from');
+    }
+
+    /**
      * Get all comments of posts.
      */
     public function comments(){

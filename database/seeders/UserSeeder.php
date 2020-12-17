@@ -17,6 +17,16 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'name' => 'SpringBbe',
+                'email' => 'classic_user@gmail.com',
+                'password' => bcrypt('123456'),
+                'detail_address' => 'Số 53 Xuân Thủy',
+                'national_id_number' => '1234567890',
+                'phone' => '0123456789',
+                'id_role' => 1,
+                'id_ward' => 1,
+            ],
+            [
+                'name' => 'SpringBbe',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('123456'),
                 'detail_address' => 'Số 53 Xuân Thủy',
@@ -33,16 +43,6 @@ class UserSeeder extends Seeder
                 'national_id_number' => '1234567890',
                 'phone' => '0123456789',
                 'id_role' => 3,
-                'id_ward' => 1,
-            ],
-            [
-                'name' => 'SpringBbe',
-                'email' => 'classic_user@gmail.com',
-                'password' => bcrypt('123456'),
-                'detail_address' => 'Số 53 Xuân Thủy',
-                'national_id_number' => '1234567890',
-                'phone' => '0123456789',
-                'id_role' => 1,
                 'id_ward' => 1,
             ],
         ];

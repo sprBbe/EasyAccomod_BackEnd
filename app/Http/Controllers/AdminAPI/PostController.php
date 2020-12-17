@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AdminController;
+namespace App\Http\Controllers\AdminAPI;
 
 use App\Http\Controllers\Controller;
 use App\Models\Amenity;
@@ -32,7 +32,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->user('api')->id_role == 2 || $request->user('api')->role->name == 'Admin') {
+        if ($request->user('api')->id_role == 2 && $request->user('api')->role->name == 'Admin') {
             return response()->json("Bạn phải là admin mới thực hiện được yêu cầu này", 403);
         }
         $request->validate([
@@ -165,7 +165,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        if ($request->user('api')->id_role == 2 || $request->user('api')->role->name == 'Admin') {
+        if ($request->user('api')->id_role == 2 && $request->user('api')->role->name == 'Admin') {
             return response()->json("Bạn phải là admin mới thực hiện được yêu cầu này", 403);
         }
         if($request->hasFile('imgs')){
