@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Amenity;
 use App\Models\District;
 use App\Models\Img;
+use App\Models\NearPlace;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -148,6 +149,7 @@ class PagesController extends Controller
             'air_conditioner' => 'required|in:' . implode(',', array(0, 1)),
             'balcony' => 'required|in:' . implode(',', array(0, 1)),
             'additional_amenity' => 'array|max:30',
+            'near_place' => 'array|max:30',
             'id_room_type' => 'required',
             'square' => 'required',
             'price' => 'required',
@@ -228,7 +230,14 @@ class PagesController extends Controller
                     $amenity->save();
                     $post->amenities()->attach($amenity->id);
                 }
-
+            }
+        }
+        $near_places = $request->near_place;
+        if (isset($near_places)) {
+            foreach ($near_places as $near_place) {
+                $nearpl = new NearPlace();
+                $nearpl->name = $near_place;
+                $post->nearPlaces()->save($nearpl);
             }
         }
         return response()->json("Successfully created post", 201);

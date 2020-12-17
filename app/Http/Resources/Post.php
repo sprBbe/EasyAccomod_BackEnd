@@ -27,6 +27,7 @@ class Post extends JsonResource
             'air_conditioner' => $this->air_conditioner,
             'balcony' => $this->balcony,
             'additional_amenity' => $this->amenities,
+            'near_place'=> $this->nearPlaces,
             'id_room_type' => $this->id_room_type,
             'square' => $this->square,
             'price' => $this->price,

@@ -30,7 +30,7 @@ class Post extends Model
     /**
      * Get near place of room in post
      */
-    public function nearPlace()
+    public function nearPlaces()
     {
         return $this->hasMany('App\Models\NearPlace', 'id_post');
     }
