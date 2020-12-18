@@ -9,7 +9,7 @@ class Post extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -20,6 +20,9 @@ class Post extends JsonResource
             'info_detail' => $this->info_detail,
             'detail_address' => $this->detail_address,
             'id_ward' => $this->id_ward,
+            'ward' => $this->ward->name,
+            'district' => $this->ward->district->name,
+            'province' => $this->ward->district->province->name,
             'with_owner' => $this->with_owner,
             'restroom' => $this->restroom,
             'kitchen' => $this->kitchen,
@@ -27,7 +30,7 @@ class Post extends JsonResource
             'air_conditioner' => $this->air_conditioner,
             'balcony' => $this->balcony,
             'additional_amenity' => $this->amenities,
-            'near_place'=> $this->nearPlaces,
+            'near_place' => $this->nearPlaces,
             'id_room_type' => $this->id_room_type,
             'square' => $this->square,
             'price' => $this->price,

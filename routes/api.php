@@ -47,6 +47,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\AdminAPI', 'middleware' => 'admin.check'], function () {
     Route::apiResources([
         'posts' => 'PostController',
+        'users' => 'UserController',
     ]);
     Route::post('send_notification/{id_to}','NotiController@sendNotification');
 });

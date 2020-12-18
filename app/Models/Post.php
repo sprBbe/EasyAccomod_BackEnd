@@ -28,6 +28,14 @@ class Post extends Model
     }
 
     /**
+     * Get ward of room in post
+     */
+    public function ward()
+    {
+        return $this->belongsTo('App\Models\Ward', 'id_ward');
+    }
+
+    /**
      * Get near place of room in post
      */
     public function nearPlaces()

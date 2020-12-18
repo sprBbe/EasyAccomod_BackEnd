@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         if ($request->phone == '') {
             $request->validate([
-                'name' => 'max:250',
+                'name' => 'required|max:250',
                 'detail_address' => 'max:250',
                 'national_id_number' => 'max:15',
                 'id_ward' => 'numeric|min:1|max:11162',
@@ -26,7 +26,7 @@ class UserController extends Controller
             ]);
         } else {
             $request->validate([
-                'name' => 'max:250',
+                'name' => 'required|max:250',
                 'detail_address' => 'max:250',
                 'national_id_number' => 'max:15',
                 'phone' => ['regex:/^(([\+]([\d]{2,}))([0-9\.\-\/\s]{5,})|([0-9\.\-\/\s]{5,}))*$/'],
