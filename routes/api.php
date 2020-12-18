@@ -28,10 +28,11 @@ Route::group(['prefix' => 'auth', 'namespace' => 'App\Http\Controllers'], functi
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('home', 'PageController@getHome')->name('home');
     Route::get('get_img/{url}', 'PageController@getImg')->name('get_img');
+    Route::get('get_all_room_type', 'PageController@getAllRoomType');
     Route::get('get_all_provinces', 'PageController@getAllProvinces')->name('get_all_provinces');
     Route::get('get_district_by_id_province/{id_province}', 'PageController@getDistrictByIdProvince');
     Route::get('get_ward_by_id_district/{id_district}', 'PageController@getWardByIdDistrict');
-    Route::get('filter', 'PageController@getFilter');
+    Route::post('filter', 'PageController@postFilter');
     Route::get('comment/{id_post}', 'PageController@getComment');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('new_post', 'PageController@postNewPost')->name('new_post');

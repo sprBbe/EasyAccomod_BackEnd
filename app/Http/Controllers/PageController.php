@@ -8,6 +8,7 @@ use App\Models\District;
 use App\Models\Img;
 use App\Models\NearPlace;
 use App\Models\Province;
+use App\Models\RoomType;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Carbon\Carbon;
@@ -41,7 +42,7 @@ class PageController extends Controller
         );
     }
 
-    function getFilter(Request $request)
+    function postFilter(Request $request)
     {
         $posts = Post::query();
         if ($request->has('id_post')) {
@@ -78,16 +79,10 @@ class PageController extends Controller
             $posts->where('square', '<=', $request->square_max);
         }
         if ($request->has('price_min')) {
-            $posts->where('square', '>=', $request->price_min);
+            $posts->where('price', '>=', $request->price_min);
         }
         if ($request->has('price_max')) {
-            $posts->where('square', '<=', $request->price_max);
-        }
-        if ($request->has('price_min')) {
-            $posts->where('square', '>=', $request->price_min);
-        }
-        if ($request->has('price_min')) {
-            $posts->where('square', '>=', $request->price_min);
+            $posts->where('price', '<=', $request->price_max);
         }
         $posts->where('status', 1);
         $posts->where('time_expire', '>', Carbon::now());
@@ -97,6 +92,13 @@ class PageController extends Controller
             $posts_img[] = $post->images;
         }
         return response()->json(['Search result' => $posts], 200);
+    }
+
+    function getAllRoomType(){
+        $roomTypes = RoomType::all();
+        return response()->json([
+            "room_types" => $roomTypes,
+        ], 200);
     }
 
     function getImg($url)
