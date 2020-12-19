@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Post as PostResource;
 use App\Models\Notification;
 use App\Models\Comment;
 use App\Models\Post;
@@ -71,6 +72,15 @@ class UserController extends Controller
         return response()->json("Đổi mật khẩu thành công!");
     }
 
+    function getFavPost(Request $request)
+    {
+        $user = $request->user();
+        $favourites = $user->favourites;
+        return response()->json([
+            'fav_post' => PostResource::collection($favourites),
+        ]);
+    }
+
     function postAddFav(Request $request, $id_post)
     {
         $user = $request->user();
@@ -87,6 +97,7 @@ class UserController extends Controller
             return response()->json("Đã được yêu thích trước đó");
         }
     }
+
 
     function postRemoveFav(Request $request, $id_post)
     {
@@ -137,9 +148,18 @@ class UserController extends Controller
 
     function getNoti(Request $request)
     {
-        $noti = Notification::where('id_to',$request->user()->id)->get();
+        $noti = Notification::where('id_to', $request->user()->id)->get();
         return response()->json([
             'noti' => $noti,
+        ]);
+    }
+
+    function getPostPosted(Request $request)
+    {
+        $user = $request->user();
+        $posts = $user->posts;
+        return response()->json([
+            'post_posted' => PostResource::collection($posts),
         ]);
     }
 }

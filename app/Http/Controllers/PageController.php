@@ -28,19 +28,10 @@ class PageController extends Controller
             ['time_expire', '>', Carbon::now()],
             ['status', 1]
         ])->orderby('created_at', 'desc')->take(8)->get();
-        $eight_posts_on_top_img = array();
-        foreach ($eight_posts_on_top as $post) {
-            $eight_posts_on_top_img[] = $post->images;
-        }
-        $eight_posts_lastest_img = array();
-        foreach ($eight_posts_lastest as $post) {
-            $eight_posts_lastest_img[] = $post->images;
-        }
         return response()->json([
-            'eight_post_on_top' => $eight_posts_on_top,
-            'eight_post_lastest' => $eight_posts_lastest,
-        ], 200
-        );
+            'eight_post_on_top' => PostResource::collection($eight_posts_on_top),
+            'eight_post_lastest' => PostResource::collection($eight_posts_lastest),
+        ]);
     }
 
     function postFilter(Request $request)
@@ -86,7 +77,7 @@ class PageController extends Controller
             $posts->where('price', '<=', $request->price_max);
         }
         $posts->where('status', 1);
-        $posts->where('time_expire', '>', Carbon::now());
+        $posts->where('time_expire', '>', Carbon::now())->orderBy('created_at','desc')->get();
         $posts = $posts->get();
         $posts_img = array();
         foreach ($posts as $post) {
@@ -95,7 +86,8 @@ class PageController extends Controller
         return PostResource::collection($posts);
     }
 
-    function getAllRoomType(){
+    function getAllRoomType()
+    {
         $roomTypes = RoomType::all();
         return response()->json([
             "room_types" => $roomTypes,
@@ -246,8 +238,10 @@ class PageController extends Controller
         }
         return response()->json("Successfully created post", 201);
     }
-    function getComment($id_post){
-        $cmt = Comment::where('id_post',$id_post)->get();
+
+    function getComment($id_post)
+    {
+        $cmt = Comment::where('id_post', $id_post)->get();
         return response()->json([
             'cmt' => $cmt,
         ]);

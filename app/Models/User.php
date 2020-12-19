@@ -65,6 +65,13 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all post of users.
+     */
+    public function posts(){
+        return $this->hasMany('App\Models\Post','id_owner');
+    }
+
+    /**
      * Get ward of users.
      */
     public function ward(){

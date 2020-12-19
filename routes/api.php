@@ -35,12 +35,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('filter', 'PageController@postFilter');
     Route::get('comment/{id_post}', 'PageController@getComment');
     Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('get_post_posted', 'UserController@getPostPosted');
         Route::post('new_post', 'PageController@postNewPost')->name('new_post');
+        Route::get('get_fav_post', 'UserController@getFavPost');
         Route::post('add_fav/{id_post}', 'UserController@postAddFav')->name('add_fav');
         Route::post('remove_fav/{id_post}', 'UserController@postRemoveFav')->name('remove_fav');
         Route::post('comment/{id_post}', 'UserController@postComment')->name('comment');
         Route::post('report/{id_post}', 'UserController@postReport')->name('report');
-        Route::get('notification','UserController@getNoti');
+        Route::get('get_noti','UserController@getNoti');
         Route::post('edit_profile', 'UserController@postEditProfile')->name('post_edit_profile');
         Route::post('change_password', 'UserController@postChangePassword')->name('post_change_password');
     });
