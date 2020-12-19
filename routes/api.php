@@ -50,5 +50,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\AdminAPI
         'posts' => 'PostController',
         'users' => 'UserController',
     ]);
+    Route::apiResource('comments','CommentController')->only('index','destroy','update');
+    Route::apiResource('reports','ReportController')->only('index','destroy','update');
     Route::post('send_notification/{id_to}','NotiController@sendNotification');
 });

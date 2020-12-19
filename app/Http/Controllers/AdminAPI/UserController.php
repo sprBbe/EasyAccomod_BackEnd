@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $posts = User::all();
+        $posts = User::orderBy('created_at','desc')->get();
         return UserResource::collection($posts);
     }
 
@@ -88,7 +88,7 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return UserResource|\Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -138,16 +138,19 @@ class UserController extends Controller
         $user->id_ward = $request->id_ward;
         $user->id_role = $request->id_role;
         $user->save();
+        return new UserResource($user);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(null, 204);
     }
 }

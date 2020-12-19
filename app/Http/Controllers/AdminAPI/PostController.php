@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at','desc')->get();
         return PostResource::collection($posts);
     }
 
@@ -39,7 +39,7 @@ class PostController extends Controller
             'id_ward' => 'required',
             'with_owner' => 'required',
             'restroom' => 'required|in:' . implode(',', array(0, 1)),
-            'kitchen' => 'required|in:' . implode(',', array(0, 1, 2)),
+            'kitchen' => 'required|in:' . implode(',', array(0, 1)),
             'water_heater' => 'required|in:' . implode(',', array(0, 1)),
             'air_conditioner' => 'required|in:' . implode(',', array(0, 1)),
             'balcony' => 'required|in:' . implode(',', array(0, 1)),
@@ -170,7 +170,7 @@ class PostController extends Controller
                 'id_ward' => 'required',
                 'with_owner' => 'required',
                 'restroom' => 'required|in:' . implode(',', array(0, 1)),
-                'kitchen' => 'required|in:' . implode(',', array(0, 1, 2)),
+                'kitchen' => 'required|in:' . implode(',', array(0, 1)),
                 'water_heater' => 'required|in:' . implode(',', array(0, 1)),
                 'air_conditioner' => 'required|in:' . implode(',', array(0, 1)),
                 'balcony' => 'required|in:' . implode(',', array(0, 1)),
@@ -217,7 +217,7 @@ class PostController extends Controller
                 'id_ward' => 'required',
                 'with_owner' => 'required',
                 'restroom' => 'required|in:' . implode(',', array(0, 1)),
-                'kitchen' => 'required|in:' . implode(',', array(0, 1, 2)),
+                'kitchen' => 'required|in:' . implode(',', array(0, 1)),
                 'water_heater' => 'required|in:' . implode(',', array(0, 1)),
                 'air_conditioner' => 'required|in:' . implode(',', array(0, 1)),
                 'balcony' => 'required|in:' . implode(',', array(0, 1)),

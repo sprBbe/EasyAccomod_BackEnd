@@ -27,6 +27,8 @@ class User extends JsonResource
             'ward' => isset($this->ward)? $this->ward->name: null,
             'district' => isset($this->ward)?$this->ward->district->name: null,
             'province' => isset($this->ward)?$this->ward->district->province->name: null,
+            'created_at'=>$this->created_at,
+            'updated_at'=>$this->updated_at,
         ];
     }
 }

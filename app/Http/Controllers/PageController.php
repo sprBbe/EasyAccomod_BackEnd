@@ -148,7 +148,7 @@ class PageController extends Controller
             'id_ward' => 'required',
             'with_owner' => 'required',
             'restroom' => 'required|in:' . implode(',', array(0, 1)),
-            'kitchen' => 'required|in:' . implode(',', array(0, 1, 2)),
+            'kitchen' => 'required|in:' . implode(',', array(0, 1)),
             'water_heater' => 'required|in:' . implode(',', array(0, 1)),
             'air_conditioner' => 'required|in:' . implode(',', array(0, 1)),
             'balcony' => 'required|in:' . implode(',', array(0, 1)),
