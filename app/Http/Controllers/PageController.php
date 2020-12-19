@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Post as PostResource;
 use App\Models\Amenity;
 use App\Models\Comment;
 use App\Models\District;
@@ -19,25 +20,25 @@ class PageController extends Controller
 {
     function getHome()
     {
-        $nine_posts_on_top = Post::where([
+        $eight_posts_on_top = Post::where([
             ['time_expire', '>', Carbon::now()],
             ['status', 1]
-        ])->orderby('views', 'desc')->take(9)->get();
-        $six_posts_lastest = Post::where([
+        ])->orderby('views', 'desc')->take(8)->get();
+        $eight_posts_lastest = Post::where([
             ['time_expire', '>', Carbon::now()],
             ['status', 1]
-        ])->orderby('created_at', 'desc')->take(6)->get();
-        $nine_posts_on_top_img = array();
-        foreach ($nine_posts_on_top as $post) {
-            $nine_posts_on_top_img[] = $post->images;
+        ])->orderby('created_at', 'desc')->take(8)->get();
+        $eight_posts_on_top_img = array();
+        foreach ($eight_posts_on_top as $post) {
+            $eight_posts_on_top_img[] = $post->images;
         }
-        $six_posts_lastest_img = array();
-        foreach ($six_posts_lastest as $post) {
-            $six_posts_lastest_img[] = $post->images;
+        $eight_posts_lastest_img = array();
+        foreach ($eight_posts_lastest as $post) {
+            $eight_posts_lastest_img[] = $post->images;
         }
         return response()->json([
-            'nine_post_on_top' => $nine_posts_on_top,
-            'six_post_lastest' => $six_posts_lastest,
+            'eight_post_on_top' => $eight_posts_on_top,
+            'eight_post_lastest' => $eight_posts_lastest,
         ], 200
         );
     }
@@ -91,7 +92,7 @@ class PageController extends Controller
         foreach ($posts as $post) {
             $posts_img[] = $post->images;
         }
-        return response()->json(['Search result' => $posts], 200);
+        return PostResource::collection($posts);
     }
 
     function getAllRoomType(){
