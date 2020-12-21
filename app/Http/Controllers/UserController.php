@@ -75,7 +75,7 @@ class UserController extends Controller
     function getFavPost(Request $request)
     {
         $user = $request->user();
-        $favourites = $user->favourites;
+        $favourites = $user->favourites->where('status',1);
         return response()->json([
             'fav_post' => PostResource::collection($favourites),
         ]);
@@ -84,7 +84,12 @@ class UserController extends Controller
     function postAddFav(Request $request, $id_post)
     {
         $user = $request->user();
-        //$post = Post::find($id_post);
+        $post = Post::find($id_post);
+        if ($post->status != 1) {
+            return response()->json([
+                'message' => "Bài đăng chưa được duyệt",
+            ]);
+        }
         $favourites = $user->favourites;
         $temp = array();
         foreach ($favourites as $favourite) {
@@ -116,6 +121,12 @@ class UserController extends Controller
 
     function postComment(Request $request, $id_post)
     {
+        $post = Post::find($id_post);
+        if ($post->status != 1) {
+            return response()->json([
+                'message' => "Bài đăng chưa được duyệt",
+            ]);
+        }
         $request->validate([
             'cmt' => 'required|max:10000',
             'rate' => 'required|in:' . implode(',', array(1, 2, 3, 4, 5)),
@@ -133,6 +144,12 @@ class UserController extends Controller
 
     function postReport(Request $request, $id_post)
     {
+        $post = Post::find($id_post);
+        if ($post->status != 1) {
+            return response()->json([
+                'message' => "Bài đăng chưa được duyệt",
+            ]);
+        }
         $request->validate([
             'req' => 'required|max:10000',
         ]);

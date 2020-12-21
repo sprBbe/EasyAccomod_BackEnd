@@ -38,6 +38,9 @@ class Post extends JsonResource
             'water_price' => $this->water_price,
             'time_expire' => $this->time_expire,
             'imgs' => $this->images,
+            'status' => $this->status,
+            'views' => $this->views,
+            'favourites' => $this->favUsers->count(),
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
         ];
