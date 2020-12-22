@@ -19,7 +19,7 @@ class UserController extends Controller
                 'name' => 'required|max:250',
                 'detail_address' => 'max:250',
                 'national_id_number' => 'max:15',
-                'id_ward' => 'numeric|min:1|max:11162',
+                'id_ward' => 'numeric|min:1|max:32248',
             ], [
                 'name.max' => 'Tên phải ngắn hơn 250 ký tự',
                 'detail_address.max' => 'Địa chỉ cụ thể chỉ nhập số nhà/ tên đường/ thôn xóm/... và không đuợc quá 250 ký tự',
@@ -31,7 +31,7 @@ class UserController extends Controller
                 'detail_address' => 'max:250',
                 'national_id_number' => 'max:15',
                 'phone' => ['regex:/^(([\+]([\d]{2,}))([0-9\.\-\/\s]{5,})|([0-9\.\-\/\s]{5,}))*$/'],
-                'id_ward' => 'numeric|min:1|max:11162',
+                'id_ward' => 'numeric|min:1|max:32248',
             ], [
                 'name.max' => 'Tên phải ngắn hơn 250 ký tự',
                 'detail_address.max' => 'Địa chỉ cụ thể chỉ nhập số nhà/ tên đường/ thôn xóm/... và không đuợc quá 250 ký tự',

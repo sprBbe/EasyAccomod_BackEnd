@@ -25,10 +25,19 @@ class StatisticController extends Controller
             ORDER BY number_of_posts DESC
             LIMIT 10"
         );
+        $top_10_wards_in_month = DB::select(
+            "SELECT w.id AS id_ward, COUNT(w.id) AS number_of_posts
+            FROM posts p JOIN wards w ON w.id=p.id_ward
+            WHERE p.status = 1 AND p.created_at > DATE_SUB(NOW(), INTERVAL 30 DAY)
+            GROUP BY w.id
+            ORDER BY number_of_posts DESC
+            LIMIT 10"
+        );
         return response()->json([
             'total_users' => $total_users,
             'most_views_in_month' => new PostResource($most_views_in_month),
             'top_10_districts_in_month' => $top_10_districts_in_month,
+            'top_10_wards_in_month' => $top_10_wards_in_month,
         ]);
     }
 }

@@ -256,7 +256,7 @@ class PageController extends Controller
                 'title' => 'required|max:250',
                 'info_detail' => 'max:2500',
                 'detail_address' => 'max:250',
-                'id_ward' => 'required',
+                'id_ward' => 'required|min:1|max:32248',
                 'with_owner' => 'required',
                 'restroom' => 'required|in:' . implode(',', array(0, 1)),
                 'kitchen' => 'required|in:' . implode(',', array(0, 1)),
@@ -303,7 +303,7 @@ class PageController extends Controller
                 'title' => 'required|max:250',
                 'info_detail' => 'max:2500',
                 'detail_address' => 'max:250',
-                'id_ward' => 'required',
+                'id_ward' => 'required|min:1|max:32248',
                 'with_owner' => 'required',
                 'restroom' => 'required|in:' . implode(',', array(0, 1)),
                 'kitchen' => 'required|in:' . implode(',', array(0, 1)),
@@ -448,7 +448,7 @@ class PageController extends Controller
         $post->rented = $request->rented;
         $post->save();
         return response()->json([
-            'mesasge'=> 'Đã cập nhật trạng thái thuê trọ',
+            'mesasge' => 'Đã cập nhật trạng thái thuê trọ',
             'post' => new PostResource($post),
         ]);
     }
