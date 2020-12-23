@@ -60,6 +60,14 @@ class Post extends Model
     }
 
     /**
+     * Get owner of post
+     */
+    public function owner()
+    {
+        return $this->belongsTo('App\Models\User', 'id_owner');
+    }
+
+    /**
      * Get all comments of posts.
      */
     public function comments(){

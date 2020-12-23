@@ -42,8 +42,10 @@ class Post extends JsonResource
             'status' => $this->status,
             'views' => $this->views,
             'favourites' => $this->favUsers->count(),
-            'created_at'=>$this->created_at,
-            'updated_at'=>$this->updated_at,
+            'id_owner' => $this->id_owner,
+            'owner' => $this->owner,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
