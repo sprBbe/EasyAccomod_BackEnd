@@ -46,36 +46,41 @@ class User extends Authenticatable
     /**
      * Get all comments of users.
      */
-    public function comments(){
-        return $this->hasMany('App\Models\Comment','id_from');
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment', 'id_from');
     }
 
     /**
      * Get all notifications of users.
      */
-    public function notifications(){
-        return $this->hasMany('App\Models\Notification','id_to');
+    public function notifications()
+    {
+        return $this->hasMany('App\Models\Notification', 'id_to');
     }
 
     /**
      * Get role of users.
      */
-    public function role(){
-        return $this->belongsTo('App\Models\Role','id_role');
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role', 'id_role');
     }
 
     /**
      * Get all post of users.
      */
-    public function posts(){
-        return $this->hasMany('App\Models\Post','id_owner');
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post', 'id_owner');
     }
 
     /**
      * Get ward of users.
      */
-    public function ward(){
-        return $this->belongsTo('App\Models\Ward','id_ward');
+    public function ward()
+    {
+        return $this->belongsTo('App\Models\Ward', 'id_ward');
     }
 
     /**
@@ -84,5 +89,21 @@ class User extends Authenticatable
     public function favourites()
     {
         return $this->belongsToMany('App\Models\Post', 'fav_post', 'id_from', 'id_post');
+    }
+
+    /**
+     * Get all messages received of users.
+     */
+    public function messagesReceived()
+    {
+        return $this->hasMany('App\Models\Message', 'id_to');
+    }
+
+    /**
+     * Get all messages received of users.
+     */
+    public function messagesSent()
+    {
+        return $this->hasMany('App\Models\Message', 'id_from');
     }
 }

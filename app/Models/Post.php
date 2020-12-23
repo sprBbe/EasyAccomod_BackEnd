@@ -24,7 +24,7 @@ class Post extends Model
      */
     public function roomType()
     {
-        return $this->belongsTo('App\Models\RoomType', 'id_room_types');
+        return $this->belongsTo('App\Models\RoomType', 'id_room_type');
     }
 
     /**
