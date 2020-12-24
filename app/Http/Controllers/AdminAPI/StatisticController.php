@@ -17,17 +17,20 @@ class StatisticController extends Controller
         $total_users = User::all()->count();
         $most_views_in_month = Post::where([['created_at', '>', Carbon::now()->subDays(30)], ['status', '1']])->orderBy('views', 'desc')->first();
         $top_10_districts_in_month = DB::select(
-            "SELECT d.id AS id_district, COUNT(d.id) AS number_of_posts
+            "SELECT d.id AS id_district,d.name as district, pr.name as province, COUNT(d.id) AS number_of_posts
             FROM posts p JOIN wards w ON w.id=p.id_ward
             JOIN districts d ON w.id_district=d.id
+            JOIN provinces pr ON d.id_province=pr.id
             WHERE p.status = 1 AND p.created_at > DATE_SUB(NOW(), INTERVAL 30 DAY)
             GROUP BY d.id
             ORDER BY number_of_posts DESC
             LIMIT 10"
         );
         $top_10_wards_in_month = DB::select(
-            "SELECT w.id AS id_ward, COUNT(w.id) AS number_of_posts
+            "SELECT w.id AS id_ward,w.name as ward,d.name as district, pr.name as province, COUNT(w.id) AS number_of_posts
             FROM posts p JOIN wards w ON w.id=p.id_ward
+            JOIN districts d ON w.id_district=d.id
+            JOIN provinces pr ON d.id_province=pr.id
             WHERE p.status = 1 AND p.created_at > DATE_SUB(NOW(), INTERVAL 30 DAY)
             GROUP BY w.id
             ORDER BY number_of_posts DESC
