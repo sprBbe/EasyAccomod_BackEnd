@@ -49,8 +49,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('edit_profile', 'UserController@postEditProfile')->name('post_edit_profile');
         Route::post('change_password', 'UserController@postChangePassword')->name('post_change_password');
         Route::group(['prefix' => 'chat'], function () {
+            Route::get('get_all_admin', 'ChatController@getAllAdmin');
             Route::get('get_message_received/{id_to}', 'ChatController@getMessageReceived');
-            Route::get('post_send_message/{id_to}', 'ChatController@postSendMessage');
+            Route::post('post_send_message/{id_to}', 'ChatController@postSendMessage');
         });
     });
 });

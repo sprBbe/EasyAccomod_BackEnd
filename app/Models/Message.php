@@ -12,20 +12,20 @@ class Message extends Model
     protected $table = "messages";
 
     /**
-     * Get receiver of messages
-     *
-     */
-    public function toUser()
-    {
-        return $this->belongsTo(User::class, 'id_to');
-    }
-
-    /**
      * Get sender of messages
      *
      */
     public function fromUser()
     {
         return $this->belongsTo(User::class, 'id_from');
+    }
+
+    /**
+     * Get roomchat of message
+     *
+     */
+    public function roomChat()
+    {
+        return $this->belongsTo(RoomChat::class, 'id_room_chat');
     }
 }

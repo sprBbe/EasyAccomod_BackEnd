@@ -94,14 +94,6 @@ class User extends Authenticatable
     /**
      * Get all messages received of users.
      */
-    public function messagesReceived()
-    {
-        return $this->hasMany('App\Models\Message', 'id_to');
-    }
-
-    /**
-     * Get all messages received of users.
-     */
     public function messagesSent()
     {
         return $this->hasMany('App\Models\Message', 'id_from');

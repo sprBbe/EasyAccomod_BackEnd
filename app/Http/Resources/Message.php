@@ -19,8 +19,8 @@ class Message extends JsonResource
             'content' => $this->content,
             'id_from'=>$this->id_from,
             'from'=>$this->fromUser,
-            'id_to'=>$this->id_to,
-            'to'=>$this->toUser,
+            'id_room_chat'=>$this->id_room_chat,
+            'room_chat'=>$this->roomChat,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
         ];
