@@ -44,6 +44,7 @@ class Post extends JsonResource
             'favourites' => $this->favUsers->count(),
             'id_owner' => $this->id_owner,
             'owner' => $this->owner,
+            'is_rented' => $this->rented,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
