@@ -179,4 +179,11 @@ class UserController extends Controller
             'post_posted' => PostResource::collection($posts),
         ]);
     }
+
+    public function deleteComment($id)
+    {
+        $cmt = Comment::find($id);
+        $cmt->delete();
+        return response()->json(null, 204);
+    }
 }

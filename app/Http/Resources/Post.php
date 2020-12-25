@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Comment as CommentModel;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Post extends JsonResource
@@ -14,6 +15,7 @@ class Post extends JsonResource
      */
     public function toArray($request)
     {
+        $avgRate = CommentModel::where('id_post', $this->id)->avg('rate');
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -42,6 +44,7 @@ class Post extends JsonResource
             'status' => $this->status,
             'views' => $this->views,
             'favourites' => $this->favUsers->count(),
+            'rate' => isset($avgRate)?$avgRate:0,
             'id_owner' => $this->id_owner,
             'owner' => $this->owner,
             'is_rented' => $this->rented,

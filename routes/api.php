@@ -44,8 +44,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('add_fav/{id_post}', 'UserController@postAddFav')->name('add_fav');
         Route::post('remove_fav/{id_post}', 'UserController@postRemoveFav')->name('remove_fav');
         Route::post('comment/{id_post}', 'UserController@postComment')->name('comment');
+        Route::post('delete_comment/{id_post}', 'UserController@deleteComment');
         Route::post('report/{id_post}', 'UserController@postReport')->name('report');
-        Route::get('get_noti','UserController@getNoti');
+        Route::get('get_noti', 'UserController@getNoti');
         Route::post('edit_profile', 'UserController@postEditProfile')->name('post_edit_profile');
         Route::post('change_password', 'UserController@postChangePassword')->name('post_change_password');
         Route::group(['prefix' => 'chat'], function () {
@@ -60,8 +61,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\AdminAPI
         'posts' => 'PostController',
         'users' => 'UserController',
     ]);
-    Route::apiResource('comments','CommentController')->only('index','destroy','update');
-    Route::apiResource('reports','ReportController')->only('index','destroy','update');
-    Route::post('send_notification/{id_to}','NotiController@sendNotification');
-    Route::get('get_statistic','StatisticController@getStatistic');
+    Route::apiResource('comments', 'CommentController')->only('index', 'destroy', 'update');
+    Route::apiResource('reports', 'ReportController')->only('index', 'destroy', 'update');
+    Route::post('send_notification/{id_to}', 'NotiController@sendNotification');
+    Route::get('get_statistic', 'StatisticController@getStatistic');
 });
