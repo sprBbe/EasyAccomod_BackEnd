@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminAPI;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Http\Resources\Comment as CommentResource;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -57,6 +58,10 @@ class CommentController extends Controller
         ]);
         $cmt->status = $request->status;
         $cmt->save();
+        $noti = new Notification();
+        $noti->content = "Bình luận của bạn đã được thay đổi trạng thái";
+        $noti->id_to = $cmt->id_from;
+        $noti->save();
         return new CommentResource($cmt);
     }
 

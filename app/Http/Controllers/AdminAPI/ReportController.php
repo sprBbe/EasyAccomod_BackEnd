@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminAPI;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use App\Http\Resources\Report as ReportResource;
@@ -57,6 +58,10 @@ class ReportController extends Controller
         ]);
         $rp->status = $request->status;
         $rp->save();
+        $noti = new Notification();
+        $noti->content = "Report của bạn đã được thay đổi trạng thái bởi quản trị viên";
+        $noti->id_to = $rp->id_from;
+        $noti->save();
         return new ReportResource($rp);
     }
 

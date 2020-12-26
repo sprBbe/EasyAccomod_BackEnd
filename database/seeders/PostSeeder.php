@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Post;
 use Carbon\Carbon;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -15,35 +16,36 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        $posts = [
-            [
-                'title' => 'Cho thuê phòng trọ giá rẻ Cầu Giấy',
-                'info_detail' => '<3 Phòng trọ chỉ 2 triệu đồng/Tháng phù hợp 2 người ở',
-                'detail_address' => '55 Xuân Thủy',
-                'id_ward' => 1,
-                'with_owner' => 1,
-                'restroom'=>1,
-                'kitchen'=>1,
-                'water_heater'=>1,
-                'air_conditioner'=>1,
-                'balcony'=>1,
-                'id_room_type' => 1,
-                'square' => rand(15, 40),
-                'price' => rand(1, 10) * 1000000,
-                'electricity_price'=>10000,
-                'water_price'=>3500,
-                'coordinates' => '@21.0229425,105.7976696,15z',
-                'id_owner' => 2,
-                'time_expire' => Carbon::now()->addYears(100),
-                'views' => rand(100, 1000),
-                'status' => 1,
-            ],
-        ];
-        for ($i = 0; $i <= 10; $i++) {
+        $faker = Faker::create();
+
+        for ($i = 0; $i < 2; $i++) {
+            $posts[] = [
+                [
+                    'title' => $faker->realText(12, 2),
+                    'info_detail' => $faker->realText(125, 2),
+                    'detail_address' => $faker->streetAddress,
+                    'id_ward' => rand(0, 1),
+                    'with_owner' => rand(0, 1),
+                    'restroom' => rand(0, 1),
+                    'kitchen' => rand(0, 1),
+                    'water_heater' => rand(0, 1),
+                    'air_conditioner' => rand(0, 1),
+                    'balcony' => rand(0, 1),
+                    'id_room_type' => rand(1, 4),
+                    'square' => rand(15, 90),
+                    'price' => rand(1, 55) * 1000000,
+                    'electricity_price' => 1000 * rand(11, 15),
+                    'water_price' => 100 * rand(25, 50),
+                    'coordinates' => '',
+                    'id_owner' => rand(2, 3),
+                    'time_expire' => Carbon::now()->addYears(),
+                    'views' => rand(100, 1000),
+                    'status' => 1,
+                ],
+            ];
             foreach ($posts as $post) {
                 Post::create($post);
             }
         }
-
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Amenity;
 use App\Models\Img;
 use App\Models\NearPlace;
+use App\Models\Notification;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -169,6 +170,10 @@ class PostController extends Controller
         ]);
         $post->status = $request->status;
         $post->save();
+        $noti = new Notification();
+        $noti->content = "Bài đăg \"".$post->title."\" của bạn đã được thay đổi trạng thái bởi quản trị viên";
+        $noti->id_to = $post->id_owner;
+        $noti->save();
         return new PostResource($post);
     }
 
