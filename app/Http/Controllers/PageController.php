@@ -20,19 +20,19 @@ class PageController extends Controller
 {
     function getHome()
     {
-        $eight_posts_on_top = Post::where([
+        $nine_posts_on_top = Post::where([
             ['time_expire', '>', Carbon::now()],
             ['status', 1],
             ['rented', 0],
-        ])->orderby('views', 'desc')->take(8)->get();
-        $eight_posts_lastest = Post::where([
+        ])->orderby('views', 'desc')->take(9)->get();
+        $six_posts_lastest = Post::where([
             ['time_expire', '>', Carbon::now()],
             ['status', 1],
             ['rented', 0],
-        ])->orderby('created_at', 'desc')->take(8)->get();
+        ])->orderby('created_at', 'desc')->take(6)->get();
         return response()->json([
-            'eight_post_on_top' => PostResource::collection($eight_posts_on_top),
-            'eight_post_lastest' => PostResource::collection($eight_posts_lastest),
+            'nine_posts_on_top' => PostResource::collection($nine_posts_on_top),
+            'six_posts_lastest' => PostResource::collection($six_posts_lastest),
         ]);
     }
 

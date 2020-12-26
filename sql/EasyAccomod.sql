@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 17, 2020 at 11:13 PM
+-- Generation Time: Dec 25, 2020 at 06:19 PM
 -- Server version: 8.0.22-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -35,6 +35,52 @@ CREATE TABLE `amenities` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `amenities`
+--
+
+INSERT INTO `amenities` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Máy giặt', '2020-12-25 10:08:37', '2020-12-25 10:08:37'),
+(2, 'Wifi free', '2020-12-25 10:08:37', '2020-12-25 10:08:37'),
+(3, 'Tủ lạnh', '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(4, 'Tủ bếp', '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(5, 'Lavabo', '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(6, 'Kệ Bếp', '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(7, 'Thang Máy', '2020-12-25 10:31:33', '2020-12-25 10:31:33'),
+(8, 'kệ bếp nấu ăn', '2020-12-25 10:35:23', '2020-12-25 10:35:23'),
+(9, 'chậu rửa bát', '2020-12-25 10:35:23', '2020-12-25 10:35:23'),
+(10, 'rèm cửa', '2020-12-25 10:38:13', '2020-12-25 10:38:13'),
+(11, 'thiết bị vệ sinh cao cấp', '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(12, 'tivi', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(13, 'bàn ăn', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(14, 'sofa', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(15, 'giường đệm', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(16, 'Sàn gỗ', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(17, 'điều hòa các phòng hiệu Daikin âm trần', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(18, 'thiết bị WC cao cấp', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(19, 'bình nóng lạnh', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(20, 'thiết bị điện chiếu sáng', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(21, 'thiết bị điện ổ cắm', '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(22, 'điều hòa các phòng hiệu Daikin', '2020-12-25 10:51:24', '2020-12-25 10:51:24'),
+(23, 'thiết bị WC', '2020-12-25 10:51:24', '2020-12-25 10:51:24'),
+(24, 'thiết bị điện hỗ trợ toàn bộ trong căn hộ', '2020-12-25 10:51:24', '2020-12-25 10:51:24'),
+(25, 'nội thất cơ bản', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(26, 'bếp từ', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(27, 'điều hòa', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(28, 'giường tủ', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(29, 'bàn ghế', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(30, '2 phòng ngủ', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(31, '2 vệ sinh', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(32, 'bếp', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(33, 'phòng khách.', '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(34, 'nóng lạnh', '2020-12-25 11:14:31', '2020-12-25 11:14:31'),
+(35, 'Giấy tờ pháp lý', '2020-12-25 11:18:11', '2020-12-25 11:18:11'),
+(36, 'Nhà mới xây', '2020-12-25 11:18:11', '2020-12-25 11:18:11'),
+(37, 'thiết kế rất hiện đại', '2020-12-25 11:18:11', '2020-12-25 11:18:11'),
+(38, 'Thiết kê thông sàn', '2020-12-25 11:18:11', '2020-12-25 11:18:11'),
+(39, 'cầu thang bộ', '2020-12-25 11:18:11', '2020-12-25 11:18:11'),
+(40, 'thang máy cuối nhà', '2020-12-25 11:18:11', '2020-12-25 11:18:11');
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +94,73 @@ CREATE TABLE `amenity_room` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `amenity_room`
+--
+
+INSERT INTO `amenity_room` (`id`, `id_post`, `id_amenity`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL),
+(2, 1, 2, NULL, NULL),
+(3, 2, 3, NULL, NULL),
+(4, 2, 4, NULL, NULL),
+(5, 2, 5, NULL, NULL),
+(6, 2, 6, NULL, NULL),
+(7, 3, 3, NULL, NULL),
+(8, 3, 4, NULL, NULL),
+(9, 3, 5, NULL, NULL),
+(10, 3, 6, NULL, NULL),
+(11, 4, 3, NULL, NULL),
+(12, 4, 7, NULL, NULL),
+(13, 5, 8, NULL, NULL),
+(14, 5, 9, NULL, NULL),
+(15, 6, 8, NULL, NULL),
+(16, 6, 9, NULL, NULL),
+(17, 6, 10, NULL, NULL),
+(18, 6, 3, NULL, NULL),
+(19, 7, 8, NULL, NULL),
+(20, 7, 3, NULL, NULL),
+(21, 7, 11, NULL, NULL),
+(22, 8, 12, NULL, NULL),
+(23, 8, 3, NULL, NULL),
+(24, 8, 1, NULL, NULL),
+(25, 8, 13, NULL, NULL),
+(26, 8, 14, NULL, NULL),
+(27, 8, 15, NULL, NULL),
+(28, 8, 16, NULL, NULL),
+(29, 8, 17, NULL, NULL),
+(30, 8, 18, NULL, NULL),
+(31, 8, 19, NULL, NULL),
+(32, 8, 20, NULL, NULL),
+(33, 8, 21, NULL, NULL),
+(34, 9, 16, NULL, NULL),
+(35, 9, 22, NULL, NULL),
+(36, 9, 23, NULL, NULL),
+(37, 9, 19, NULL, NULL),
+(38, 9, 20, NULL, NULL),
+(39, 9, 21, NULL, NULL),
+(40, 9, 24, NULL, NULL),
+(41, 10, 25, NULL, NULL),
+(42, 10, 26, NULL, NULL),
+(43, 10, 27, NULL, NULL),
+(44, 10, 19, NULL, NULL),
+(45, 10, 3, NULL, NULL),
+(46, 10, 28, NULL, NULL),
+(47, 10, 29, NULL, NULL),
+(48, 10, 30, NULL, NULL),
+(49, 10, 31, NULL, NULL),
+(50, 10, 32, NULL, NULL),
+(51, 10, 33, NULL, NULL),
+(52, 11, 25, NULL, NULL),
+(53, 11, 27, NULL, NULL),
+(54, 11, 4, NULL, NULL),
+(55, 11, 34, NULL, NULL),
+(56, 12, 35, NULL, NULL),
+(57, 12, 36, NULL, NULL),
+(58, 12, 37, NULL, NULL),
+(59, 12, 38, NULL, NULL),
+(60, 12, 39, NULL, NULL),
+(61, 12, 40, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -65,6 +178,14 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `content`, `status`, `rate`, `id_from`, `id_post`, `created_at`, `updated_at`) VALUES
+(1, 'Phòng trọ tuyệt vời', 0, 5, 1, 1, '2020-12-25 10:54:44', '2020-12-25 10:54:44'),
+(2, 'Nó lừa đảo đấy', 0, 1, 2, 8, '2020-12-25 10:56:10', '2020-12-25 10:56:10');
 
 -- --------------------------------------------------------
 
@@ -830,6 +951,16 @@ CREATE TABLE `fav_post` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `fav_post`
+--
+
+INSERT INTO `fav_post` (`id`, `id_from`, `id_post`, `created_at`, `updated_at`) VALUES
+(4, 2, 1, NULL, NULL),
+(7, 2, 2, NULL, NULL),
+(8, 2, 3, NULL, NULL),
+(9, 2, 4, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -845,6 +976,51 @@ CREATE TABLE `imgs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `imgs`
+--
+
+INSERT INTO `imgs` (`id`, `link`, `is_main_img`, `id_post`, `created_at`, `updated_at`) VALUES
+(1, 'post_lGlny_ca9db417f7271bd1d95f1f3098a7aa18-2687497745813077639.jpg', 1, 1, '2020-12-25 10:08:37', '2020-12-25 10:08:37'),
+(2, 'post_p7tnF_a265a729b13dc51e86d6a2c2b52bcb93-2687497751293943299.jpg', 0, 1, '2020-12-25 10:08:37', '2020-12-25 10:08:37'),
+(3, 'post_rO4KM_34459c92a56b167dbea034e8b4fff4d7-2687497747969721711.jpg', 0, 1, '2020-12-25 10:08:37', '2020-12-25 10:08:37'),
+(4, 'post_zkKXe_31ebe58b89233c77a703ec7c0ec44ffd-2687496636596420231.jpg', 0, 1, '2020-12-25 10:08:37', '2020-12-25 10:08:37'),
+(6, 'post_9Wsvm_e20865d57265e44014bb9abfa7283486-2693304220333429004.jpg', 1, 2, '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(7, 'post_qJL4B_a1f84a8b7118e3cbb26d600cb2b7d0e8-2693304220250724746.jpg', 0, 2, '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(8, 'post_SJgn2_713afffac2b60679832fac33effff183-2693304221628251446.jpg', 0, 2, '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(9, 'post_pMpfp_b43ed8f41bd0a7e3c0f0164dfce17072-2693304222853053750.jpg', 0, 2, '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(16, 'post_JnqPL_227aad745397fccb66ced4465057a8d8-2691687057575829994.jpg', 1, 3, '2020-12-25 10:17:51', '2020-12-25 10:17:51'),
+(17, 'post_NaA3j_2576d65b9fea62115edb35394aaa43d3-2691687055664505849.jpg', 0, 3, '2020-12-25 10:17:51', '2020-12-25 10:17:51'),
+(18, 'post_NHkYH_c73decf9bd35a9546128656c2829e7d1-2691687056247146518.jpg', 0, 3, '2020-12-25 10:17:51', '2020-12-25 10:17:51'),
+(19, 'post_WTSHk_31a316b5cf47bea3d2feccbcde71d3bd-2697927524808731360.jpg', 1, 4, '2020-12-25 10:31:33', '2020-12-25 10:31:33'),
+(20, 'post_DXOfQ_791809e010049e8a87232361644496d6-2697927524946740908.jpg', 0, 4, '2020-12-25 10:31:33', '2020-12-25 10:31:33'),
+(21, 'post_pYXWO_ddfd2fd3e770bd783daccc4d8a66b875-2697927523957583111.jpg', 0, 4, '2020-12-25 10:31:33', '2020-12-25 10:31:33'),
+(23, 'post_u4snj_fda42d42c50609fbd3690b00ffa15b0b-2699259811515098137.jpg', 0, 5, '2020-12-25 10:35:23', '2020-12-25 10:35:23'),
+(24, 'post_Vgx8K_516200960b70b5d9c459b3c216ba2388-2699259811439152750.jpg', 0, 5, '2020-12-25 10:35:23', '2020-12-25 10:35:23'),
+(25, 'post_FX9wJ_6364de2de4c271af8766b9af7d6962a5-2699259810806244157.jpg', 0, 5, '2020-12-25 10:35:23', '2020-12-25 10:35:23'),
+(26, 'post_EhsxO_5d434cf609d99889db5921b11dbbd008-2699222647299261756.jpg', 1, 6, '2020-12-25 10:38:13', '2020-12-25 10:38:13'),
+(27, 'post_7s1ie_d618e040818a7e8b0fe31cc76f966996-2699222647131062197.jpg', 0, 6, '2020-12-25 10:38:13', '2020-12-25 10:38:13'),
+(28, 'post_fLYzU_bb1a777c3cbcb5bd7bb73356016b0fdf-2699222647325706609.jpg', 0, 6, '2020-12-25 10:38:13', '2020-12-25 10:38:13'),
+(29, 'post_9EP2t_9a9fbed6e643c2996add89199e2cba99-2699137581981914592.jpg', 1, 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(30, 'post_s8w5W_7f52a12c5f9a5c8ae277fd52924b38d3-2699137581984390368.jpg', 0, 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(31, 'post_Bzw44_92551acf7461afc7303799c6f745ab12-2699137581805912024.jpg', 0, 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(32, 'post_Fgbnx_e9aca9999b621623d90ec4b92d985688-2699137582023554684.jpg', 0, 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(33, 'post_zutUt_40e16e0c663180b95fa3b5a4b87dc47d-2699004232983634562.jpg', 1, 8, '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(34, 'post_cDVT4_52dd01e0e8d5ae95ebcefa5c9331861b-2699004233003778818.jpg', 0, 8, '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(35, 'post_qLFWa_d6d77d3401dc11ed93693fe04cf67370-2699004233825927938.jpg', 0, 8, '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(36, 'post_VKLpX_6a749cbd9518c0ba42bb598551d5c3e6-2698947370499127810.jpg', 1, 9, '2020-12-25 10:51:24', '2020-12-25 10:51:24'),
+(37, 'post_qvjJj_152e219501f997dffb611236af24fb4b-2698947384525404674.jpg', 0, 9, '2020-12-25 10:51:24', '2020-12-25 10:51:24'),
+(38, 'post_jT53b_7fb66d6f6c251303e1a3f272ae2c1792-2698947383847718573.jpg', 0, 9, '2020-12-25 10:51:24', '2020-12-25 10:51:24'),
+(39, 'post_ttpBu_f6ab59371c14b3a1297726b54050b270-2698940129243216065.jpg', 1, 10, '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(40, 'post_CJI0Q_a9f338ac174e1ede2af30ee548e7c7ee-2698940128210481700.jpg', 0, 10, '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(41, 'post_UKJXt_5a54d61d3ad8ebf32759f620485b9f1d-2698940129300366078.jpg', 0, 10, '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(42, 'post_jTKbg_5c9af92e863b66c837639e3287bc1dd9-2698860410752914929.jpg', 1, 11, '2020-12-25 11:14:31', '2020-12-25 11:14:31'),
+(43, 'post_eA7vx_930cfe7a4c02fb85db7b1d1cb54b16da-2698860410778756505.jpg', 0, 11, '2020-12-25 11:14:31', '2020-12-25 11:14:31'),
+(44, 'post_457Z7_3e48f7b5a0d81c0a3f409ed7e9c01b94-2698860410749402942.jpg', 0, 11, '2020-12-25 11:14:31', '2020-12-25 11:14:31'),
+(45, 'post_9Izo0_c0e40d40a3825a34ae980a93beece8e7-2699255419316603920.jpg', 1, 12, '2020-12-25 11:18:11', '2020-12-25 11:18:11'),
+(46, 'post_Kbsvk_b114d459fc04e72644c35577d83a3cf9-2699255426402922335.jpg', 0, 12, '2020-12-25 11:18:11', '2020-12-25 11:18:11'),
+(47, 'post_6OPEI_6d3f695c8c25d57363f5339344b83f40-2699255433104924841.jpg', 0, 12, '2020-12-25 11:18:11', '2020-12-25 11:18:11');
+
 -- --------------------------------------------------------
 
 --
@@ -855,9 +1031,9 @@ CREATE TABLE `messages` (
   `id` bigint UNSIGNED NOT NULL,
   `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_from` bigint UNSIGNED NOT NULL,
-  `id_to` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `id_room_chat` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -901,7 +1077,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2020_11_16_061925_create_messages_table', 1),
 (23, '2020_11_16_063603_create_comments_table', 1),
 (24, '2020_11_16_063828_create_fav_post_table', 1),
-(25, '2020_11_23_091230_add_nullable_field_to_users', 1);
+(25, '2020_11_23_091230_add_nullable_field_to_users', 1),
+(26, '2020_12_21_110927_add_rented_to_post', 1),
+(27, '2020_12_23_224938_create_room_chats_table', 1),
+(28, '2020_12_23_224939_fix_table_messages', 1),
+(29, '2020_12_25_180736_fix_infor_detail_in_table_posts', 2);
 
 -- --------------------------------------------------------
 
@@ -916,6 +1096,38 @@ CREATE TABLE `near_places` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `near_places`
+--
+
+INSERT INTO `near_places` (`id`, `name`, `id_post`, `created_at`, `updated_at`) VALUES
+(1, 'Siêu Thị Lotte', 1, '2020-12-25 10:08:37', '2020-12-25 10:08:37'),
+(2, 'ĐH Tôn Đức Thắng', 1, '2020-12-25 10:08:37', '2020-12-25 10:08:37'),
+(3, 'KDC Tân Quy gần Lotte Mart Q7', 2, '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(4, 'Crescent Mall', 2, '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(5, 'KCX Tân Thuận', 2, '2020-12-25 10:15:00', '2020-12-25 10:15:00'),
+(6, 'chợ Rạch Ông', 3, '2020-12-25 10:17:51', '2020-12-25 10:17:51'),
+(7, 'ĐH Sư Phạm', 4, '2020-12-25 10:31:33', '2020-12-25 10:31:33'),
+(8, 'IPH Xuân Thủy', 4, '2020-12-25 10:31:33', '2020-12-25 10:31:33'),
+(9, 'ĐH Sư Phạm', 5, '2020-12-25 10:35:23', '2020-12-25 10:35:23'),
+(10, 'IPH Xuân Thủy', 5, '2020-12-25 10:35:23', '2020-12-25 10:35:23'),
+(11, 'bến xe Mỹ Đình', 5, '2020-12-25 10:35:23', '2020-12-25 10:35:23'),
+(12, 'ĐH Sư Phạm', 6, '2020-12-25 10:38:13', '2020-12-25 10:38:13'),
+(13, 'IPH Xuân Thủy', 6, '2020-12-25 10:38:13', '2020-12-25 10:38:13'),
+(14, 'bến xe Mỹ Đình', 6, '2020-12-25 10:38:13', '2020-12-25 10:38:13'),
+(15, 'IPH Xuân Thủy', 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(16, 'bến xe Mỹ Đình', 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(17, 'ĐH Quốc Gia', 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(18, 'ĐH Báo Chí', 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(19, 'ĐH Sư phạm', 7, '2020-12-25 10:41:44', '2020-12-25 10:41:44'),
+(20, 'trường học', 8, '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(21, 'trung tâm thương mại', 8, '2020-12-25 10:46:15', '2020-12-25 10:46:15'),
+(22, 'Nhiều công ty lớn', 9, '2020-12-25 10:51:24', '2020-12-25 10:51:24'),
+(23, 'Lucky Building', 10, '2020-12-25 10:58:57', '2020-12-25 10:58:57'),
+(24, 'Discovery Cầu Giấy', 11, '2020-12-25 11:14:31', '2020-12-25 11:14:31'),
+(25, 'văn phòng', 12, '2020-12-25 11:18:11', '2020-12-25 11:18:11'),
+(26, 'cơ quan hành chính nhà nước', 12, '2020-12-25 11:18:11', '2020-12-25 11:18:11');
 
 -- --------------------------------------------------------
 
@@ -948,6 +1160,15 @@ CREATE TABLE `oauth_access_tokens` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_access_tokens`
+--
+
+INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
+('64cfb5074cd02ccd2f251d19f5ec47fefb12ac1c0864a8c155c309dab5f2134e5dcd537b3b1117cc', 2, 1, 'User Token', '[]', 0, '2020-12-25 09:52:54', '2020-12-25 09:52:54', '2021-01-08 16:52:54'),
+('88adfaea7dd7d893efc94076e357ee548f26c90fd79a46c272d39a35a8debf6ff20df9e9613cb5d7', 2, 1, 'User Token', '[]', 0, '2020-12-25 11:00:59', '2020-12-25 11:00:59', '2021-01-08 18:00:59'),
+('abf44f671689a32ff03d6ae3572234e920527c2036a18d028d290d6608cb461220dc0e8946b85db6', 2, 1, 'User Token', '[]', 1, '2020-12-25 09:57:56', '2020-12-25 09:57:56', '2021-01-08 16:57:56');
 
 -- --------------------------------------------------------
 
@@ -989,8 +1210,8 @@ CREATE TABLE `oauth_clients` (
 --
 
 INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'EasyAccomod Personal Access Client', 'FZ6qbcgWJwA602gkEw6sxdU3kSttT0ucSRng05w4', NULL, 'http://localhost', 1, 0, 0, '2020-12-17 16:11:26', '2020-12-17 16:11:26'),
-(2, NULL, 'EasyAccomod Password Grant Client', 'JZZS6ejoLZhG4ru8Ftje0dATPj5EreHjw7012fOV', 'users', 'http://localhost', 0, 1, 0, '2020-12-17 16:11:26', '2020-12-17 16:11:26');
+(1, NULL, 'EasyAccomod Personal Access Client', '9gaPrVN4Ej2Xls9jc4zH3F6ihqHYW27zYgvsKe2g', NULL, 'http://localhost', 1, 0, 0, '2020-12-25 09:49:28', '2020-12-25 09:49:28'),
+(2, NULL, 'EasyAccomod Password Grant Client', '8BfM36FznxVTeTvLKehKLaLuQ6fyg5IHemj0nzz1', 'users', 'http://localhost', 0, 1, 0, '2020-12-25 09:49:28', '2020-12-25 09:49:28');
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1231,7 @@ CREATE TABLE `oauth_personal_access_clients` (
 --
 
 INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2020-12-17 16:11:26', '2020-12-17 16:11:26');
+(1, 1, '2020-12-25 09:49:28', '2020-12-25 09:49:28');
 
 -- --------------------------------------------------------
 
@@ -1046,12 +1267,12 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `posts` (
   `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `info_detail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `info_detail` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `detail_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_ward` bigint UNSIGNED NOT NULL,
   `with_owner` tinyint NOT NULL COMMENT '1: live with owner; 0: no live owner',
   `restroom` tinyint NOT NULL COMMENT '1: riêng; 0: chung',
-  `kitchen` tinyint NOT NULL COMMENT '1: khu bếp riêng; 0: không nấu; 2: khu bếp chung',
+  `kitchen` tinyint NOT NULL COMMENT '1: có bếp; 0: không bếp',
   `water_heater` tinyint NOT NULL COMMENT '1: có nóng lạnh; 0: không nóng lạnh',
   `air_conditioner` tinyint NOT NULL COMMENT '1: có điều hòa; 0: không điều hòa',
   `balcony` tinyint NOT NULL COMMENT '1: có ban công; 0: không ban công',
@@ -1066,8 +1287,27 @@ CREATE TABLE `posts` (
   `views` bigint NOT NULL,
   `status` tinyint NOT NULL COMMENT '1: checked; 0: unchecked',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `rented` tinyint NOT NULL COMMENT '1: đã được thuê; 0: chưa được thuê'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `info_detail`, `detail_address`, `id_ward`, `with_owner`, `restroom`, `kitchen`, `water_heater`, `air_conditioner`, `balcony`, `id_room_type`, `square`, `electricity_price`, `water_price`, `price`, `coordinates`, `id_owner`, `time_expire`, `views`, `status`, `created_at`, `updated_at`, `rented`) VALUES
+(1, 'Ở ghép giường tầng quận 7 giá rẻ', '- Yêu cầu: người đi làm có lí lịch rõ ràng, công việc ổn định hoặc học sinh, sinh viên.', 'Đường 36', 27481, 1, 1, 1, 1, 1, 1, 1, 25, 3500, 10000, 700000, NULL, 3, '2021-01-08 17:08:37', 0, 1, '2020-12-25 10:08:37', '2020-12-25 10:08:37', 0),
+(2, 'Cho Thuê Phòng Giá Tốt_Mới Xây_Ưu đãi lớn cuối năm', 'CAM KẾT VỀ\n✔️ Chất lượng hình ảnh, thông tin chính xác.\n✔️ Nhân viên luôn sẵn sàng hỗ trợ tư vấn nhiệt tình.', 'Đường Nguyễn Thị Thập', 27478, 0, 1, 1, 1, 0, 0, 1, 30, 3000, 10000, 4000000, NULL, 2, '2021-01-08 17:14:59', 0, 1, '2020-12-25 10:14:59', '2020-12-25 10:14:59', 0),
+(3, 'Cho Thuê Phòng Giá Tốt_Mới Xây_Ưu đãi lớn cuối năm', 'Nhấn để hiện số: 0903710000', '219/2d, Đường Âu Dương Lân', 27391, 0, 1, 1, 1, 0, 0, 1, 30, 3000, 10000, 3000000, NULL, 2, '2021-01-08 17:17:51', 0, 1, '2020-12-25 10:17:51', '2020-12-25 10:17:51', 0),
+(4, 'CÒN DUY NHẤT 1 CĂN HỘ 40M2 TẠI NGÕ 181 XUÂN THỦY', 'CÒN 1 CĂN HỘ 40M2 TẠI NGÕ 181 XUÂN THỦY, CẦU GIẤY\nCÓ THỂ ĐI TỪ NHIỀU NGÕ 78 DUY TÂN, 68 DỊCH VỌNG HẬU', 'Xuân Thủy', 167, 0, 1, 1, 1, 0, 0, 2, 30, 3000, 10000, 4500000, NULL, 2, '2021-01-01 17:31:33', 0, 1, '2020-12-25 10:31:33', '2020-12-25 10:31:33', 0),
+(5, 'Phòng kk ngõ 63/74 Trần Quốc Vượng 1tr8-3tr', 'Căn nhà xây có 5 tầng, tầng một để xe, phòng kk có cửa sổ rộng thoáng mát', 'Ngõ 63/74 Trần Quốc Vượng', 167, 0, 1, 0, 0, 0, 0, 1, 15, 3000, 10000, 1800000, NULL, 2, '2021-01-01 17:35:23', 0, 1, '2020-12-25 10:35:23', '2020-12-25 10:35:23', 0),
+(6, 'Căn hộ mini ngõ 44 Trần Thái Tông 4tr3-30m', 'Căn nhà xây có 7 tầng, có Thang Máy, xe để dưới tầng một, các phòng đều kk, có cửa sổ rộng thoáng mát, nấu ăn trong phòng', 'Ngõ 44 Trần Thái Tông', 167, 0, 1, 0, 1, 0, 0, 1, 15, 3000, 10000, 1800000, NULL, 2, '2021-01-01 17:38:13', 0, 1, '2020-12-25 10:38:13', '2020-12-25 10:38:13', 0),
+(7, 'Cho thuê phòng mới khép kín giá 3tr5 tại Cầu Giấy', 'Phòng khép kín rộng 20m. còn trống tầng 4\n(Ưu tiên nữ ở sạch sẽ)', '36, Đường Dịch Vọng Hậu', 167, 0, 1, 0, 1, 0, 0, 1, 20, 3500, 12000, 1800000, NULL, 2, '2021-01-08 17:41:44', 0, 1, '2020-12-25 10:41:44', '2020-12-25 10:41:44', 0),
+(8, 'Cho Thuê Căn Hộ Tòa 173 Xuân Thủy 110m² 3PN Full', '- Hợp đồng thuê: 12 tháng, 24 tháng...\n- Thanh toán 3 tháng, đặt cọc 1 tháng.', '173 Đường Xuân Thủy', 167, 0, 1, 1, 1, 0, 1, 4, 110, 3000, 10000, 12000000, NULL, 2, '2021-01-08 17:46:15', 0, 1, '2020-12-25 10:46:15', '2020-12-25 10:46:15', 0),
+(9, 'Chung cư DreamLand Bonanza 93m² 3PN Full Đồ Đạc', 'Khách chỉ việc xách vali vào ở.\nLiên hệ để thuê được với giá tốt nhất!!!', 'Số 23 Đường Duy Tân', 167, 0, 1, 1, 1, 0, 1, 4, 110, 3000, 10000, 12500000, NULL, 3, '2021-01-08 17:51:24', 0, 1, '2020-12-25 10:51:24', '2020-12-25 10:51:24', 0),
+(10, 'Chung cư 30 Phạm Văn Đồng Lucky Building Bắc Hà 2N', 'Liên hệ để được đi xem nhà trực tiếp và tư vấn', '30 Đường Phạm Văn Đồng', 167, 0, 1, 1, 1, 0, 1, 4, 110, 3000, 10000, 8500000, NULL, 3, '2021-01-08 17:58:57', 0, 1, '2020-12-25 10:58:57', '2020-12-25 10:58:57', 0),
+(11, 'Chung cư Tổ hợp 173 Xuân Thủy 110m² 3PN Đồ cơ bản', 'Tôi cần cho thuê 2 căn hộ tại chung cư 173 Xuân Thủy giá tốt nhất.\nCăn hộ được thiết kế 3 phòng ngủ 2 vệ sinh: Nội thất cơ bản, điều hòa, tủ bếp nóng lạnh giá chỉ 10 triệu: Diện tích 110m2.\nCăn hộ đã được trang bị full nội thất giá chỉ 12 triệu.\nCó thể vào ở ngay.', 'Tổ hợp 173 Xuân Thủy', 166, 0, 1, 1, 1, 0, 1, 4, 110, 3000, 10000, 10000000, NULL, 2, '2021-01-08 18:14:31', 0, 1, '2020-12-25 11:14:31', '2020-12-25 11:14:31', 0),
+(12, 'Nhà mặt phố tôn thất thuyết 120m x 7 tầng + 1 hầm', 'Dự án: nhà mặt phố tôn thất thuyết .\nThông tin chi tiết: nhà mặt phố tôn thất thuyết 120m x 7 tầng + 1 hầm\nnhà mặt phố tôn thất thuyết, dịch vọng hậu, Q.cầu giấy, hà nội\ndiện tích đát 120m xd 85m x 7 tầng + 1 hầm ,Nhà mới xây, thiết kế rất hiện đại.\nVỉa hè 5m + có tầng hầm để xe máy, ô tô thoải mái khoảng 30 xe máy + 3 ô tô\nGần nhiều văn phòng, cơ quan hành chính nhà nước…\nRất thích hợp làm showroom, café, văn phòng, phòng khám, ngân hàng, trang sức…\nGiá: 75 triệu/ tháng\n-thiết kế thông sàn. Có thang máy và hầm gửi xe. Vỉa hè rộng 6m\nThiết kê thông sàn, cầu thang bộ, thang máy cuối nhà', 'Đường Tôn Thất Thuyết', 167, 0, 1, 1, 1, 0, 1, 3, 110, 3000, 10000, 75000000, NULL, 2, '2021-01-08 18:18:11', 0, 1, '2020-12-25 11:18:11', '2020-12-25 11:18:11', 0);
 
 -- --------------------------------------------------------
 
@@ -1186,9 +1426,23 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Classic User', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
-(2, 'Admin', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
-(3, 'Owner', '2020-12-17 16:12:52', '2020-12-17 16:12:52');
+(1, 'Classic User', '2020-12-25 09:51:37', '2020-12-25 09:51:37'),
+(2, 'Admin', '2020-12-25 09:51:37', '2020-12-25 09:51:37'),
+(3, 'Owner', '2020-12-25 09:51:37', '2020-12-25 09:51:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_chats`
+--
+
+CREATE TABLE `room_chats` (
+  `id` bigint UNSIGNED NOT NULL,
+  `id_user1` bigint UNSIGNED NOT NULL,
+  `id_user2` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1208,10 +1462,10 @@ CREATE TABLE `room_types` (
 --
 
 INSERT INTO `room_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Phòng trọ', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
-(2, 'Chung cư mini', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
-(3, 'Nhà nguyên căn', '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
-(4, 'Chung cư nguyên căn', '2020-12-17 16:12:52', '2020-12-17 16:12:52');
+(1, 'Phòng trọ', '2020-12-25 09:51:37', '2020-12-25 09:51:37'),
+(2, 'Chung cư mini', '2020-12-25 09:51:37', '2020-12-25 09:51:37'),
+(3, 'Nhà nguyên căn', '2020-12-25 09:51:37', '2020-12-25 09:51:37'),
+(4, 'Chung cư nguyên căn', '2020-12-25 09:51:37', '2020-12-25 09:51:37');
 
 -- --------------------------------------------------------
 
@@ -1240,9 +1494,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `detail_address`, `national_id_number`, `phone`, `id_role`, `id_ward`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'SpringBbe', 'classic_user@gmail.com', NULL, '$2y$10$zik/.9/nIbf8xZISTJFEd.D5BCqO39Mpdzw5UKIT2BOTSa7phfpQS', 'Số 53 Xuân Thủy', '1234567890', '0123456789', 1, 1, NULL, '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
-(2, 'SpringBbe', 'admin@gmail.com', NULL, '$2y$10$uMV2MWmak1edGBOmF8p9SeQhmMrQH..nibd18HDBvAYum/lQUUZnK', 'Số 53 Xuân Thủy', '1234567890', '0123456789', 2, 1, NULL, '2020-12-17 16:12:52', '2020-12-17 16:12:52'),
-(3, 'SpringBbe', 'owner@gmail.com', NULL, '$2y$10$6zEzdzc9roqV9C3tsaj3AekpJGoZvluoDCj5mzZ6GmWeZr5OVqgri', 'Số 55 Xuân Thủy', '1234567890', '0123456789', 3, 1, NULL, '2020-12-17 16:12:52', '2020-12-17 16:12:52');
+(1, 'SpringBbe', 'classic_user@gmail.com', NULL, '$2y$10$h6.XZlMyI8o7cWyLB0hNreXePTHKtP2rijrmVEsxkAWgPgNmDJzkm', 'Số 53 Xuân Thủy', '1234567890', '0123456789', 1, 1, NULL, '2020-12-25 09:51:37', '2020-12-25 09:51:37'),
+(2, 'SpringBbe', 'admin@gmail.com', NULL, '$2y$10$GDUWSUb5r45Yg9yGqwKilu7ZK/B7alXB.AlY6ruI7z16vykZYR2BO', 'Số 53 Xuân Thủy', '1234567890', '0123456789', 2, 1, NULL, '2020-12-25 09:51:37', '2020-12-25 09:51:37'),
+(3, 'SpringBbe', 'owner@gmail.com', NULL, '$2y$10$Pffu3vXkTPS3fFGrrB1/zuF/11oELWnK/dRYai5M5cw3ja57HyY0y', 'Số 55 Xuân Thủy', '1234567890', '0123456789', 3, 1, NULL, '2020-12-25 09:51:37', '2020-12-25 09:51:37');
 
 -- --------------------------------------------------------
 
@@ -12498,7 +12752,7 @@ ALTER TABLE `imgs`
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
   ADD KEY `messages_id_from_foreign` (`id_from`),
-  ADD KEY `messages_id_to_foreign` (`id_to`);
+  ADD KEY `messages_id_room_chat_foreign` (`id_room_chat`);
 
 --
 -- Indexes for table `migrations`
@@ -12590,6 +12844,14 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `room_chats`
+--
+ALTER TABLE `room_chats`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `room_chats_id_user1_foreign` (`id_user1`),
+  ADD KEY `room_chats_id_user2_foreign` (`id_user2`);
+
+--
 -- Indexes for table `room_types`
 --
 ALTER TABLE `room_types`
@@ -12619,19 +12881,19 @@ ALTER TABLE `wards`
 -- AUTO_INCREMENT for table `amenities`
 --
 ALTER TABLE `amenities`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `amenity_room`
 --
 ALTER TABLE `amenity_room`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -12649,13 +12911,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `fav_post`
 --
 ALTER TABLE `fav_post`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `imgs`
 --
 ALTER TABLE `imgs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -12667,13 +12929,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `near_places`
 --
 ALTER TABLE `near_places`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -12697,7 +12959,7 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -12716,6 +12978,12 @@ ALTER TABLE `reports`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `room_chats`
+--
+ALTER TABLE `room_chats`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `room_types`
@@ -12777,7 +13045,7 @@ ALTER TABLE `imgs`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_id_from_foreign` FOREIGN KEY (`id_from`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `messages_id_to_foreign` FOREIGN KEY (`id_to`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `messages_id_room_chat_foreign` FOREIGN KEY (`id_room_chat`) REFERENCES `room_chats` (`id`);
 
 --
 -- Constraints for table `near_places`
@@ -12805,6 +13073,13 @@ ALTER TABLE `posts`
 ALTER TABLE `reports`
   ADD CONSTRAINT `reports_id_from_foreign` FOREIGN KEY (`id_from`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `reports_id_post_foreign` FOREIGN KEY (`id_post`) REFERENCES `posts` (`id`);
+
+--
+-- Constraints for table `room_chats`
+--
+ALTER TABLE `room_chats`
+  ADD CONSTRAINT `room_chats_id_user1_foreign` FOREIGN KEY (`id_user1`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `room_chats_id_user2_foreign` FOREIGN KEY (`id_user2`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`

@@ -75,7 +75,7 @@ class UserController extends Controller
     function getFavPost(Request $request)
     {
         $user = $request->user();
-        $favourites = $user->favourites->where('status',1);
+        $favourites = $user->favourites->where('status', 1);
         return response()->json([
             'fav_post' => PostResource::collection($favourites),
         ]);
@@ -124,7 +124,7 @@ class UserController extends Controller
         $post = Post::find($id_post);
         if ($post->status != 1) {
             return response()->json([
-                'message' => "Bài đăng chưa được duyệt",
+                'data' => "Bài đăng chưa được duyệt",
             ]);
         }
         $request->validate([
@@ -132,14 +132,20 @@ class UserController extends Controller
             'rate' => 'required|in:' . implode(',', array(1, 2, 3, 4, 5)),
         ]);
         $user = $request->user();
-        $cmt = new Comment();
+        $cmt = Comment::where([['id_post', $id_post], ['id_from', $user->id]])->first();
+        if (isset($cmt)){
+            return response()->json([
+                'data' => "Bạn đã đánh giá bài đăng này rồi!",
+            ]);
+        }
+            $cmt = new Comment();
         $cmt->content = $request->cmt;
         $cmt->rate = $request->rate;
         $cmt->id_from = $user->id;
         $cmt->id_post = $id_post;
         $cmt->status = 0;
         $cmt->save();
-        return response()->json("Thêm cmt thành công", 201);
+        return response()->json(['data' => "Thêm cmt thành công"], 201);
     }
 
     function postReport(Request $request, $id_post)
