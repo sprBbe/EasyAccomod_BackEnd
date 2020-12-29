@@ -191,6 +191,7 @@ class PostController extends Controller
         }
         $post->images()->delete();
         $post->amenities()->detach();
+        $post->nearPlaces()->delete();
         $post->delete();
         return response()->json(null, 204);
     }
