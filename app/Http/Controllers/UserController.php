@@ -8,10 +8,17 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    /**
+     * Sửa thông tin người dùng
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     function postEditProfile(Request $request)
     {
         if ($request->phone == '') {
@@ -81,6 +88,13 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Ghi nhận yêu thích bài đăng
+     *
+     * @param Request $request
+     * @param $id_post
+     * @return \Illuminate\Http\JsonResponse
+     */
     function postAddFav(Request $request, $id_post)
     {
         $user = $request->user();
@@ -103,7 +117,13 @@ class UserController extends Controller
         }
     }
 
-
+    /**
+     * Ghi nhận yêu cầu hủy yêu thích
+     *
+     * @param Request $request
+     * @param $id_post
+     * @return \Illuminate\Http\JsonResponse
+     */
     function postRemoveFav(Request $request, $id_post)
     {
         $user = $request->user();
@@ -119,6 +139,13 @@ class UserController extends Controller
         } else return response()->json("Bài viết chưa được yêu thích trước đó");
     }
 
+    /**
+     * Ghi nhận comment mới
+     *
+     * @param Request $request
+     * @param $id_post
+     * @return \Illuminate\Http\JsonResponse
+     */
     function postComment(Request $request, $id_post)
     {
         $post = Post::find($id_post);
@@ -148,6 +175,13 @@ class UserController extends Controller
         return response()->json(['data' => "Thêm cmt thành công"], 201);
     }
 
+    /**
+     * Ghi nhận báo cáo mới
+     *
+     * @param Request $request
+     * @param $id_post
+     * @return \Illuminate\Http\JsonResponse
+     */
     function postReport(Request $request, $id_post)
     {
         $post = Post::find($id_post);
@@ -169,6 +203,12 @@ class UserController extends Controller
         return response()->json("Thêm report thành công", 201);
     }
 
+    /**
+     * Lấy ra toàn bộ thông báo của người dùng hiện tại
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getNoti(Request $request)
     {
         $noti = Notification::where('id_to', $request->user()->id)->get();
@@ -177,15 +217,32 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Lấy ra những bài đã đăng của người dùng hiện tại
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getPostPosted(Request $request)
     {
         $user = $request->user();
-        $posts = $user->posts;
+        if (Cache::has('post_posted'.$user->id)) {
+            $posts = Cache::get('post_posted'.$user->id);
+        }else {
+            $posts = $user->posts;
+            Cache::put('post_posted'.$user->id, $posts, env('CACHE_TIME', 0));
+        }
         return response()->json([
             'post_posted' => PostResource::collection($posts),
         ]);
     }
 
+    /**
+     * Ghi nhận xóa bài đăng
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteComment($id)
     {
         $cmt = Comment::find($id);

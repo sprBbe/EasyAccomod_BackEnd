@@ -13,28 +13,53 @@ use App\Models\RoomType;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
+    /**
+     * Lấy các phòng trọ cho trang chủ
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getHome()
     {
-        $nine_posts_on_top = Post::where([
-            ['time_expire', '>', Carbon::now()],
-            ['status', 1],
-            ['rented', 0],
-        ])->orderby('views', 'desc')->take(9)->get();
-        $six_posts_lastest = Post::where([
-            ['time_expire', '>', Carbon::now()],
-            ['status', 1],
-            ['rented', 0],
-        ])->orderby('created_at', 'desc')->take(6)->get();
+        if (Cache::has('nine_posts_on_top')) {
+            //Nếu tồn tại key nine_posts_on_top
+            $nine_posts_on_top = Cache::get('nine_posts_on_top');
+        } else {
+            // Nếu không, truy vấn database và lưu vào cache
+            $nine_posts_on_top = Post::where([
+                ['time_expire', '>', Carbon::now()],
+                ['status', 1],
+                ['rented', 0],
+            ])->orderby('views', 'desc')->take(9)->get();
+            Cache::put('nine_posts_on_top', $nine_posts_on_top, env('CACHE_TIME', 0));
+        }
+        if (Cache::has('six_posts_lastest')) {
+            $six_posts_lastest = Cache::get('six_posts_lastest');
+        } else {
+            $six_posts_lastest = Post::where([
+                ['time_expire', '>', Carbon::now()],
+                ['status', 1],
+                ['rented', 0],
+            ])->orderby('created_at', 'desc')->take(6)->get();
+            Cache::put('six_posts_lastest', $six_posts_lastest, env('CACHE_TIME', 0));
+        }
         return response()->json([
             'nine_posts_on_top' => PostResource::collection($nine_posts_on_top),
             'six_posts_lastest' => PostResource::collection($six_posts_lastest),
         ]);
     }
+
+    /**
+     * Lọc phòng trọ theo các tiêu chí post lên
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
 
     function postFilter(Request $request)
     {
@@ -88,6 +113,11 @@ class PageController extends Controller
         return PostResource::collection($posts);
     }
 
+    /**
+     * Lấy tất cả loại phòng: Phòng trọ, Chung cư, Nhà nguyên căn,...
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getAllRoomType()
     {
         $roomTypes = RoomType::all();
@@ -101,6 +131,11 @@ class PageController extends Controller
         return response()->file("uploads/post_images/" . $url);
     }
 
+    /**
+     * Lấy tất cả các tỉnh trong database
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getAllProvinces()
     {
         $provinces = Province::all();
@@ -109,6 +144,12 @@ class PageController extends Controller
         ], 200);
     }
 
+    /**
+     * Lấy huyện theo id của tỉnh
+     *
+     * @param $id_province
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getDistrictByIdProvince($id_province)
     {
         $province = Province::find($id_province);
@@ -118,6 +159,12 @@ class PageController extends Controller
         ], 200);
     }
 
+    /**
+     * Lấy xã theo id của huyện
+     *
+     * @param $id_district
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getWardByIdDistrict($id_district)
     {
         $district = District::find($id_district);
@@ -127,6 +174,12 @@ class PageController extends Controller
         ], 200);
     }
 
+    /**
+     * Nhận bài đăng mới
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     function postNewPost(Request $request)
     {
         if ($request->user()->id_role == 1) {
@@ -242,6 +295,13 @@ class PageController extends Controller
         return response()->json("Successfully created post", 201);
     }
 
+    /**
+     * Sửa bài đăng (chỉ bài đăng chưa được duyệt mới được sửa)
+     *
+     * @param Request $request
+     * @param $id_post
+     * @return \Illuminate\Http\JsonResponse
+     */
     function postEditPost(Request $request, $id_post)
     {
         $post = Post::find($id_post);
@@ -416,6 +476,12 @@ class PageController extends Controller
         ]);
     }
 
+    /**
+     * Lấy ra một bài đăng
+     *
+     * @param $id_post
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getPost($id_post)
     {
         $post = Post::find($id_post);
@@ -436,6 +502,13 @@ class PageController extends Controller
         ]);
     }
 
+    /**
+     * Cập nhật trạng thái: Đã cho thuê/Còn phòng
+     *
+     * @param Request $request
+     * @param $id_post
+     * @return \Illuminate\Http\JsonResponse
+     */
     function updateRentedStatus(Request $request, $id_post)
     {
         $post = Post::find($id_post);
