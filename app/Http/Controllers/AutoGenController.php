@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 
 class AutoGenController extends Controller
 {
+    /**
+     * Hàm tự động tạo dữ liệu giả
+     */
     function autoGen()
     {
         for ($j = 0; $j < 10; $j++) {

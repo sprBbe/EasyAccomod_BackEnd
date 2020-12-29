@@ -120,7 +120,12 @@ class PageController extends Controller
      */
     function getAllRoomType()
     {
-        $roomTypes = RoomType::all();
+        if (Cache::has('roomTypes')) {
+            $roomTypes = Cache::get('roomTypes');
+        } else {
+            $roomTypes = RoomType::all();
+            Cache::put('roomTypes', $roomTypes, env('CACHE_TIME', 0));
+        }
         return response()->json([
             "room_types" => $roomTypes,
         ], 200);
@@ -138,10 +143,15 @@ class PageController extends Controller
      */
     function getAllProvinces()
     {
-        $provinces = Province::all();
+        if (Cache::has('provinces')) {
+            $provinces = Cache::get('provinces');
+        } else {
+            $provinces = Province::all();
+            Cache::put('provinces', $provinces, env('CACHE_TIME', 0));
+        }
         return response()->json([
             "provinces" => $provinces,
-        ], 200);
+        ]);
     }
 
     /**
@@ -152,8 +162,13 @@ class PageController extends Controller
      */
     function getDistrictByIdProvince($id_province)
     {
-        $province = Province::find($id_province);
-        $districts = $province->district;
+        if (Cache::has('districts'.$id_province)) {
+            $districts = Cache::get('districts'.$id_province);
+        } else {
+            $province = Province::find($id_province);
+            $districts = $province->district;
+            Cache::put('districts'.$id_province, $districts, env('CACHE_TIME', 0));
+        }
         return response()->json([
             "districts" => $districts,
         ], 200);
@@ -167,11 +182,16 @@ class PageController extends Controller
      */
     function getWardByIdDistrict($id_district)
     {
-        $district = District::find($id_district);
-        $wards = $district->ward;
+        if (Cache::has('wards'.$id_district)) {
+            $wards = Cache::get('wards'.$id_district);
+        } else {
+            $district = District::find($id_district);
+            $wards = $district->ward;
+            Cache::put('wards'.$id_district, $wards, env('CACHE_TIME', 0));
+        }
         return response()->json([
             "wards" => $wards,
-        ], 200);
+        ]);
     }
 
     /**

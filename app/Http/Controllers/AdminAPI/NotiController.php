@@ -8,6 +8,13 @@ use App\Models\Notification;
 
 class NotiController extends Controller
 {
+    /**
+     * Gửi thông báo cho người dùng
+     *
+     * @param Request $request
+     * @param $id_to
+     * @return \Illuminate\Http\JsonResponse
+     */
     function sendNotification(Request $request,$id_to){
         $request->validate([
             'noti' => 'required|max:1000000'

@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\DB;
 
 class StatisticController extends Controller
 {
+    /**
+     * Lấy các biến thống kê trang web
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getStatistic()
     {
         $total_users = User::all()->count();

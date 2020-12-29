@@ -12,10 +12,22 @@ use App\Http\Resources\Message as MessageResource;
 
 class ChatController extends Controller
 {
+    /**
+     * Lấy toàn bộ admin
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     function getAllAdmin(){
         $posts = User::where('id_role',2)->orderBy('created_at','desc')->get();
         return UserResource::collection($posts);
     }
+
+    /**
+     * Lấy những tin nhắn đến
+     *
+     * @param Request $request
+     * @param $id_to
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getMessageReceived(Request $request, $id_to)
     {
         $user = $request->user();
@@ -31,6 +43,13 @@ class ChatController extends Controller
         }
     }
 
+    /**
+     * Lấy những tin nhắn đã gửi
+     *
+     * @param Request $request
+     * @param $id_to
+     * @return \Illuminate\Http\JsonResponse
+     */
     function postSendMessage(Request $request, $id_to)
     {
         $user = $request->user();
