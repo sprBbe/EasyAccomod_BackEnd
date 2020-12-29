@@ -490,7 +490,7 @@ class PageController extends Controller
                 'message' => "Bài đăng chưa được duyệt",
             ]);
         }
-        $cmt = Comment::where('id_post', $id_post)->get();
+        $cmt = Comment::where([['id_post', $id_post],['status',1]])->get();
         return response()->json([
             'cmt' => $cmt,
         ]);

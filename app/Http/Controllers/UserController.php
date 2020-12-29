@@ -160,19 +160,19 @@ class UserController extends Controller
         ]);
         $user = $request->user();
         $cmt = Comment::where([['id_post', $id_post], ['id_from', $user->id]])->first();
-        if (isset($cmt)){
+        if (isset($cmt)) {
             return response()->json([
                 'data' => "Bạn đã đánh giá bài đăng này rồi!",
             ]);
         }
-            $cmt = new Comment();
+        $cmt = new Comment();
         $cmt->content = $request->cmt;
         $cmt->rate = $request->rate;
         $cmt->id_from = $user->id;
         $cmt->id_post = $id_post;
         $cmt->status = 0;
         $cmt->save();
-        return response()->json(['data' => "Thêm cmt thành công"], 201);
+        return response()->json(['data' => "Thêm bình luận thành công! Bình luận sẽ được hiển thị khi admin duyệt"], 201);
     }
 
     /**
@@ -226,11 +226,11 @@ class UserController extends Controller
     function getPostPosted(Request $request)
     {
         $user = $request->user();
-        if (Cache::has('post_posted'.$user->id)) {
-            $posts = Cache::get('post_posted'.$user->id);
-        }else {
+        if (Cache::has('post_posted' . $user->id)) {
+            $posts = Cache::get('post_posted' . $user->id);
+        } else {
             $posts = $user->posts;
-            Cache::put('post_posted'.$user->id, $posts, env('CACHE_TIME', 0));
+            Cache::put('post_posted' . $user->id, $posts, env('CACHE_TIME', 0));
         }
         return response()->json([
             'post_posted' => PostResource::collection($posts),
